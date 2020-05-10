@@ -2,7 +2,6 @@ package com.tanrice.studentregistrationmanagementsystem;
 
 
 import android.content.Context;
-import android.util.Log;
 
 
 import com.tanrice.studentregistrationmanagementsystem.dao.DaoMaster;

@@ -7,8 +7,17 @@ private  String  verificationCode;
 private  String  accountNumber;
 private  String  name;
 private  String  password;
+private  String  studentNumber;
 private  boolean  student;
 private  boolean  teacher;
+
+    public String getStudentNumber() {
+        return studentNumber;
+    }
+
+    public void setStudentNumber(String studentNumber) {
+        this.studentNumber = studentNumber;
+    }
 
     public String getSchool() {
         return school;

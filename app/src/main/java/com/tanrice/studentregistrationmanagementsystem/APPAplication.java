@@ -7,9 +7,6 @@ import android.util.Log;
 import android.view.WindowManager;
 
 
-import com.tanrice.studentregistrationmanagementsystem.dao.DaoMaster;
-import com.tanrice.studentregistrationmanagementsystem.dao.DaoSession;
-
 import java.util.UUID;
 
 public class APPAplication extends Application {
