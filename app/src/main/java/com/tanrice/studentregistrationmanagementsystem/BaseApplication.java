@@ -26,7 +26,7 @@ public class BaseApplication extends APPAplication {
     public void onCreate() {
         super.onCreate();
         sApplication = this;
-        Log.e("uuid:", mUuid + "\n" + mUuid.toString());
+
         init();
     }
 
