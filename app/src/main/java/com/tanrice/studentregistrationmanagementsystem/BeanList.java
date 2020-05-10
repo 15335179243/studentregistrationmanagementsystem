@@ -79,6 +79,7 @@ public class BeanList {
     public static List<BeanList> getData() {
         ArrayList<BeanList> lists = new ArrayList<>();
         ArrayList<String> department = new ArrayList<>();
+        department.add("请选择--");
         department.add("土木学院");
         department.add("人工智能学院");
         department.add("外语系");
