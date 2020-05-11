@@ -177,7 +177,7 @@ public class RegisterActivity extends BaseActivity {
                     showToast("请输入学号");
                     return;
                 } else {
-                    String rate = "([1][6-9][0-9]{6})";
+                    String rate = "([1][6-9][0-9]{6})|([2][0][0-9]{6})";
                     if (!mBeanSelected.getStudentNumber().matches(rate)) {
                         showToast(mBeanSelected.getStudentNumber());
                         return;
