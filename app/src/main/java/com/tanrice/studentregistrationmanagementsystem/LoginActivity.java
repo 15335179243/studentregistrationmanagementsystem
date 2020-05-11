@@ -1,7 +1,6 @@
 package com.tanrice.studentregistrationmanagementsystem;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
@@ -19,7 +18,6 @@ import com.tanrice.studentregistrationmanagementsystem.dao.BeanSelected;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class LoginActivity extends BaseActivity {
@@ -122,10 +120,12 @@ public class LoginActivity extends BaseActivity {
                         break;
                     case R.id.rd_student:
                         mBeanSelected.setStudent(true);
+                        mBeanSelected.setTeacher(false);
                         break;
 
                     case R.id.rd_teacher:
                         mBeanSelected.setTeacher(true);
+                        mBeanSelected.setStudent(false);
                         break;
                 }
             }
@@ -195,10 +195,10 @@ public class LoginActivity extends BaseActivity {
                         mBeanSelected.getStudentNumber(), mBeanSelected.getDepartment(), mBeanSelected.isStudent(), mBeanSelected.isTeacher(), 0));
 
 
-                if (user != null && !mBeanSelected.getSchool().equals(user.getSchool()) &&
-                        !mBeanSelected.getStudentNumber().equals(user.getStudentNumber()) &&
-                        !mBeanSelected.getAccountNumber().equals(user.getUserName()) &&
-                        !mBeanSelected.getDepartment().equals(user.getDepartment()) &&
+                if (user != null && !mBeanSelected.getSchool().equals(user.getSchool()) ||
+                        !mBeanSelected.getStudentNumber().equals(user.getStudentNumber()) ||
+                        !mBeanSelected.getAccountNumber().equals(user.getUserName()) ||
+                        !mBeanSelected.getDepartment().equals(user.getDepartment()) ||
                         !mBeanSelected.getName().equals(user.getName())
                 ) {
                     showToast("请正确填写信息");
@@ -207,11 +207,12 @@ public class LoginActivity extends BaseActivity {
                 if (!mBeanSelected.getPassword().equals(user.getUserPwd())) {
                     showToast("密码错误");
                 }
-                if (!(mBeanSelected.isTeacher() && user.getStudent()) || !(mBeanSelected.isStudent() && user.getStudent())) {
-                    showToast("请正确选择性别");
+                if (!mBeanSelected.isTeacher().toString().equals(user.getTeacher().toString()) || !mBeanSelected.isStudent().toString().equals(user.getStudent().toString())) {
+                    showToast("请正确选老师或学生");
+                    return;
                 }
 //                Intent intent1 = new Intent();
-
+                showToast("登陆成功");
 
                 break;
             case R.id.register:

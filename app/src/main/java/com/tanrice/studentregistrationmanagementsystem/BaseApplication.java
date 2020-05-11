@@ -6,6 +6,7 @@ import android.content.Context;
 
 import com.tanrice.studentregistrationmanagementsystem.dao.DaoMaster;
 import com.tanrice.studentregistrationmanagementsystem.dao.DaoSession;
+import com.tanrice.studentregistrationmanagementsystem.pic.DisplayU;
 
 import androidx.multidex.MultiDex;
 
@@ -19,6 +20,7 @@ public class BaseApplication extends APPAplication {
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
         MultiDex.install(this);
+        DisplayU.init(base);
     }
 
     @Override

@@ -105,10 +105,11 @@
         android:layout_marginStart="32dp"
         android:ems="10"
         android:inputType="number"
-        android:text="Name"
+        android:hint="账号为纯数字"
         app:layout_constraintBottom_toBottomOf="@+id/account_number"
         app:layout_constraintStart_toEndOf="@+id/account_number"
-        app:layout_constraintTop_toTopOf="@+id/account_number" />
+        app:layout_constraintTop_toTopOf="@+id/account_number"
+        app:layout_constraintVertical_bias="0.47" />
 
     <EditText
         android:id="@+id/name_content"
@@ -138,8 +139,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:hint="八位数字"
         android:inputType="number"
-        android:text="Name"
         app:layout_constraintBottom_toBottomOf="@+id/student_number"
         app:layout_constraintStart_toStartOf="@+id/name_content"
         app:layout_constraintTop_toTopOf="@+id/student_number" />

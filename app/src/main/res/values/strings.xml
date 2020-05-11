@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">学生报名管理系统</string>
+    <string name="divider_int">%d/%d</string>
+
 </resources>

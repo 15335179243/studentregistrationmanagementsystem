@@ -13,7 +13,7 @@ public class SQLHelper {
     private static DaoSession sDaoSession = BaseApplication.getDaoSession();
 
     public static User queryItem(User User) {
-        return sDaoSession.queryBuilder(User.class).where(UserDao.Properties.UserName.eq(User.getUserName())).build().unique();
+        return sDaoSession.queryBuilder(User.class).where(UserDao.Properties.StudentNumber.eq(User.getStudentNumber())).build().unique();
     }
 
     public static List<User> queryAll() {
@@ -21,6 +21,7 @@ public class SQLHelper {
     }
 
     public static void insert(User User) {
+
         if (queryItem(User) == null) {
             sDaoSession.insert(User);
         } else {

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black">
+
+    <com.tanrice.studentregistrationmanagementsystem.pic.PreviewViewPager
+        android:id="@+id/activity_scan_media_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/media_top_gradient">
+        <RelativeLayout
+            android:id="@+id/activity_scan_media_title_rl"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            >
+
+            <ImageView
+                android:id="@+id/activity_scan_media_pager_back_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:padding="15dp"
+                android:src="@drawable/jc_back_normal" />
+
+            <TextView
+                android:id="@+id/activity_scan_media_title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:ellipsize="end"
+                android:maxEms="11"
+                android:textColor="@android:color/white"
+                android:textSize="18sp" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

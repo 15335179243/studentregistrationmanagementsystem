@@ -47,4 +47,20 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="CommonTipDialogStyle" parent="ViewsBaseDialogFragment">
+        <item name="android:windowAnimationStyle">@style/CommonTipDialogStyle.AnimationStyle</item>
+    </style>
+
+    <style name="CommonTipDialogStyle.AnimationStyle" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/anim_common_base_tip_dialog_show</item>
+        <item name="android:windowExitAnimation">@anim/anim_common_base_tip_dialog_close</item>
+    </style>
+    <style name="ViewsBaseDialogFragment" parent="@android:style/Theme.Dialog">
+        <item name="android:windowTitleStyle">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
 </resources>

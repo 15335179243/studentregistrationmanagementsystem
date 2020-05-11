@@ -8,8 +8,8 @@ private  String  accountNumber;
 private  String  name;
 private  String  password;
 private  String  studentNumber;
-private  boolean  student;
-private  boolean  teacher;
+private  Boolean  student;
+private  Boolean  teacher;
 
     public String getStudentNumber() {
         return studentNumber;
@@ -67,15 +67,15 @@ private  boolean  teacher;
         this.password = password;
     }
 
-    public boolean isStudent() {
+    public Boolean isStudent() {
         return student;
     }
 
-    public void setStudent(boolean student) {
+    public void setStudent(Boolean student) {
         this.student = student;
     }
 
-    public boolean isTeacher() {
+    public Boolean isTeacher() {
         return teacher;
     }
 
