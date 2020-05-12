@@ -1,6 +1,5 @@
 package com.tanrice.studentregistrationmanagementsystem;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -12,12 +11,14 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.tanrice.studentregistrationmanagementsystem.basedata.BeanList;
+import com.tanrice.studentregistrationmanagementsystem.basedata.SQLHelper;
+import com.tanrice.studentregistrationmanagementsystem.basedata.User;
 import com.tanrice.studentregistrationmanagementsystem.dao.BeanSelected;
 
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class RegisterActivity extends BaseActivity {

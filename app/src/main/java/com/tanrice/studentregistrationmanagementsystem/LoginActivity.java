@@ -13,6 +13,9 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.tanrice.studentregistrationmanagementsystem.basedata.BeanList;
+import com.tanrice.studentregistrationmanagementsystem.basedata.SQLHelper;
+import com.tanrice.studentregistrationmanagementsystem.basedata.User;
 import com.tanrice.studentregistrationmanagementsystem.dao.BeanSelected;
 
 import java.util.List;
