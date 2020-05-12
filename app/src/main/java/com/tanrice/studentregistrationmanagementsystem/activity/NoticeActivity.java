@@ -1,20 +1,21 @@
-package com.tanrice.studentregistrationmanagementsystem;
+package com.tanrice.studentregistrationmanagementsystem.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.tanrice.studentregistrationmanagementsystem.NoticeAdapter;
+import com.tanrice.studentregistrationmanagementsystem.R;
 
 import java.util.ArrayList;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class Main2Activity extends BaseActivity {
+public class NoticeActivity extends BaseActivity {
     @BindView(R.id.img_back)
     ImageView mImgBack;
     @BindView(R.id.tv_title)
@@ -60,7 +61,7 @@ public class Main2Activity extends BaseActivity {
         noticeAdapter.setOnClickListener(new NoticeAdapter.OnClickListener() {
             @Override
             public void onClick(View v, int i) {
-                Intent intent = new Intent(Main2Activity.this, ScanMediaActivity.class);
+                Intent intent = new Intent(NoticeActivity.this, ScanMediaActivity.class);
                 intent.putStringArrayListExtra("list",mArrayLists.get(0));
                 startActivity(intent);
                 finish();

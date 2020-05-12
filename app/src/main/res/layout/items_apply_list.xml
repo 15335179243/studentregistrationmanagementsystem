@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dp_8"
+    android:elevation="@dimen/dp_8"
+    android:orientation="vertical"
+    app:cardBackgroundColor="@android:color/white"
+    app:cardCornerRadius="@dimen/dp_8"
+    app:cardElevation="@dimen/dp_8"
+    app:cardUseCompatPadding="true"
+    app:contentPadding="@dimen/dp_8">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/ll_tap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_studentNumber"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_30"
+                android:layout_weight="1.5"
+                android:gravity="center"
+                android:text="学号"
+                android:textSize="@dimen/sp_18"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/noeSpinner"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_30"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="类型"
+                android:textSize="@dimen/sp_18"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/towSpinner"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_30"
+                android:layout_weight="2"
+                android:text="项目"
+                android:gravity="center"
+                android:textSize="@dimen/sp_18"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_tap_tow"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_8"
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/ll_tap"
+            app:layout_constraintStart_toStartOf="@+id/ll_tap"
+            app:layout_constraintTop_toBottomOf="@+id/ll_tap">
+
+            <TextView
+                android:id="@+id/tv_studentNumber_content"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_50"
+                android:layout_weight="1.5"
+                android:gravity="center"
+                android:textSize="@dimen/sp_14"
+                tools:text="16111111" />
+
+            <TextView
+                android:id="@+id/noeSpinner_content"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_50"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="田赛"
+                android:textSize="@dimen/sp_16" />
+
+            <TextView
+                android:id="@+id/towSpinner_content"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/dp_50"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="男子一千米无障碍"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

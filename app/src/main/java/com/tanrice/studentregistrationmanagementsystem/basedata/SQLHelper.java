@@ -3,7 +3,6 @@ package com.tanrice.studentregistrationmanagementsystem.basedata;
 import android.util.Log;
 
 import com.tanrice.studentregistrationmanagementsystem.BaseApplication;
-import com.tanrice.studentregistrationmanagementsystem.basedata.User;
 import com.tanrice.studentregistrationmanagementsystem.dao.DaoSession;
 import com.tanrice.studentregistrationmanagementsystem.dao.UserDao;
 

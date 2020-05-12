@@ -1,7 +1,5 @@
-package com.tanrice.studentregistrationmanagementsystem;
+package com.tanrice.studentregistrationmanagementsystem.activity;
 
-import android.content.Intent;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,6 +11,7 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.tanrice.studentregistrationmanagementsystem.R;
 import com.tanrice.studentregistrationmanagementsystem.basedata.BeanList;
 import com.tanrice.studentregistrationmanagementsystem.basedata.SQLHelper;
 import com.tanrice.studentregistrationmanagementsystem.basedata.User;
@@ -23,9 +22,13 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class LoginActivity extends BaseActivity {
+public class RegisterActivity extends BaseActivity {
 
 
+    @BindView(R.id.spinner_school)
+    Spinner mSpinnerSchool;
+    @BindView(R.id.login)
+    TextView mLogin;
     @BindView(R.id.img_back)
     ImageView mImgBack;
     @BindView(R.id.tv_title)
@@ -60,24 +63,20 @@ public class LoginActivity extends BaseActivity {
     RadioButton mRdTeacher;
     @BindView(R.id.radioGroup)
     RadioGroup mRadioGroup;
-    @BindView(R.id.login)
-    Button mLogin;
-    @BindView(R.id.spinner_school)
-    Spinner mSpinnerSchool;
     @BindView(R.id.register)
-    TextView mRegister;
-    private List<BeanList> mData;
+    Button mRegister;
     private BeanSelected mBeanSelected;
+    private List<BeanList> mData;
 
     @Override
     public int getLayoutId() {
-        return R.layout.activity_main;
+        return (R.layout.activity_register);
     }
 
     @Override
     public void initView() {
         steStatusBar(true);
-        mImgBack.setVisibility(View.GONE);
+        mTvTitle.setText("注册");
         mData = BeanList.getData();
         mBeanSelected = new BeanSelected();
     }
@@ -96,6 +95,7 @@ public class LoginActivity extends BaseActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 mBeanSelected.setSchool(adapterView.getItemAtPosition(i).toString());
+                showToast("" + adapterView.getItemAtPosition(i).toString());
             }
 
             @Override
@@ -123,12 +123,10 @@ public class LoginActivity extends BaseActivity {
                         break;
                     case R.id.rd_student:
                         mBeanSelected.setStudent(true);
-                        mBeanSelected.setTeacher(false);
                         break;
 
                     case R.id.rd_teacher:
                         mBeanSelected.setTeacher(true);
-                        mBeanSelected.setStudent(false);
                         break;
                 }
             }
@@ -136,46 +134,48 @@ public class LoginActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.img_back, R.id.login, R.id.register})
+    @OnClick({R.id.register, R.id.login, R.id.img_back})
     public void onClick(View v) {
         switch (v.getId()) {
             default:
                 break;
-            case R.id.img_back:
-                break;
-            case R.id.login:
+            case R.id.register:
+
+
                 mBeanSelected.setName(mNameContent.getText().toString().trim());
                 mBeanSelected.setAccountNumber(mAccountNumberContent.getText().toString().trim());
                 mBeanSelected.setPassword(mPwdContent.getText().toString().trim());
                 mBeanSelected.setVerificationCode(mVerificationCode.getText().toString().trim());
                 mBeanSelected.setStudentNumber(mStudentNumberContent.getText().toString().trim());
-                if (TextUtils.isEmpty(mBeanSelected.getSchool())) {
+
+
+                if (!StringU(mBeanSelected.getSchool())) {
                     showToast("请选择学校");
                     return;
                 }
-                if (TextUtils.isEmpty(mBeanSelected.getDepartment())) {
+                if (!StringU(mBeanSelected.getDepartment())) {
                     showToast("请选择院系");
                     return;
                 }
-                if (TextUtils.isEmpty(mBeanSelected.getAccountNumber())) {
+                if (!StringU(mBeanSelected.getAccountNumber())) {
                     showToast("请输入账号");
                     return;
                 }
-                if (TextUtils.isEmpty(mBeanSelected.getName())) {
+                if (!StringU(mBeanSelected.getName())) {
                     showToast("请输入姓名");
                     return;
                 }
-                if (TextUtils.isEmpty(mBeanSelected.getVerificationCode())) {
+                if (!StringU(mBeanSelected.getVerificationCode())) {
                     showToast("请输入验证码");
                     return;
                 } else {
                     if (!mBeanSelected.getVerificationCode().equals("00581ys")) {
-                        showToast("验证码不正确,请联系校方获取验证码");
+                        showToast("非本校学生不能注册");
                         return;
                     }
 
                 }
-                if (TextUtils.isEmpty(mBeanSelected.getStudentNumber())) {
+                if (!StringU(mBeanSelected.getStudentNumber())) {
                     showToast("请输入学号");
                     return;
                 } else {
@@ -186,7 +186,7 @@ public class LoginActivity extends BaseActivity {
                     }
 
                 }
-                if (TextUtils.isEmpty(mBeanSelected.getPassword())) {
+                if (!StringU(mBeanSelected.getPassword())) {
                     showToast("请输入密码");
                     return;
                 }
@@ -196,34 +196,42 @@ public class LoginActivity extends BaseActivity {
                 }
                 User user = SQLHelper.queryItem(new User(null, mBeanSelected.getAccountNumber(), mBeanSelected.getPassword(), 0, "", mBeanSelected.getName(), mBeanSelected.getSchool(),
                         mBeanSelected.getStudentNumber(), mBeanSelected.getDepartment(), mBeanSelected.isStudent(), mBeanSelected.isTeacher(), 0));
+                if (user != null) {
+                    if (
+                            !mBeanSelected.getStudentNumber().equals(user.getStudentNumber()) &&
+                                    !mBeanSelected.getAccountNumber().equals(user.getUserName()) &&
+                                    !mBeanSelected.getName().equals(user.getName())
+                    ) {
+                        SQLHelper.insert(new User(null, mBeanSelected.getAccountNumber(), mBeanSelected.getPassword(), 0, "", mBeanSelected.getName(), mBeanSelected.getSchool(),
+                                mBeanSelected.getStudentNumber(), mBeanSelected.getDepartment(), mBeanSelected.isStudent(), mBeanSelected.isTeacher(), 0));
+                    } else {
+                        showToast("您已经注册过了");
+                        return;
+                    }
 
+                } else {
+                    SQLHelper.insert(new User(null, mBeanSelected.getAccountNumber(), mBeanSelected.getPassword(), 0, "", mBeanSelected.getName(), mBeanSelected.getSchool(),
+                            mBeanSelected.getStudentNumber(), mBeanSelected.getDepartment(), mBeanSelected.isStudent(), mBeanSelected.isTeacher(), 0));
+                }
 
-                if (user != null && !mBeanSelected.getSchool().equals(user.getSchool()) ||
-                        !mBeanSelected.getStudentNumber().equals(user.getStudentNumber()) ||
-                        !mBeanSelected.getAccountNumber().equals(user.getUserName()) ||
-                        !mBeanSelected.getDepartment().equals(user.getDepartment()) ||
-                        !mBeanSelected.getName().equals(user.getName())
-                ) {
-                    showToast("请正确填写信息");
-                    return;
-                }
-                if (!mBeanSelected.getPassword().equals(user.getUserPwd())) {
-                    showToast("密码错误");
-                }
-                if (!mBeanSelected.isTeacher().toString().equals(user.getTeacher().toString()) || !mBeanSelected.isStudent().toString().equals(user.getStudent().toString())) {
-                    showToast("请正确选老师或学生");
-                    return;
-                }
-//                Intent intent1 = new Intent();
-                showToast("登陆成功");
+                showToast("注册成功");
+                finish();
+                break;
+            case R.id.login:
+                finish();
 
                 break;
-            case R.id.register:
-                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-                startActivity(intent);
+            case R.id.img_back:
+                finish();
                 break;
         }
     }
 
+    public boolean StringU(String str) {
+        if (str != null && !str.equals("")) {
+            return true;
+        } else return false;
+
+    }
 
 }

@@ -1,4 +1,4 @@
-package com.tanrice.studentregistrationmanagementsystem;
+package com.tanrice.studentregistrationmanagementsystem.activity;
 
 
 import android.content.ClipboardManager;
@@ -15,6 +15,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+import com.tanrice.studentregistrationmanagementsystem.BaseApplication;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
