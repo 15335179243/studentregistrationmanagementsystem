@@ -90,6 +90,7 @@ public class BeanList {
         department.add("艺术系");
         department.add("人文学院");
         ArrayList<String> studentTrack = new ArrayList<>();
+        department.add("请选择--");
         studentTrack.add("男子100 米");
         studentTrack.add("女子100米");
         studentTrack.add("男子1000");
@@ -101,12 +102,14 @@ public class BeanList {
         studentTrack.add("女子4x100");
         studentTrack.add("男子110米栏");
         ArrayList<String> studentFieldEvents = new ArrayList<>();
+        department.add("请选择--");
         studentFieldEvents.add("铅球");
         studentFieldEvents.add("跳远");
         studentFieldEvents.add("三级跳");
         TProject studentProject = new TProject(studentTrack, studentFieldEvents);
 
         ArrayList<String> teacherTrack = new ArrayList<>();
+        department.add("请选择--");
         teacherTrack.add("教工女子100米");
         teacherTrack.add("教工男子100米");
         teacherTrack.add("教工女子200米");
@@ -115,6 +118,7 @@ public class BeanList {
         teacherTrack.add("教工女子1500米");
         teacherTrack.add("教工女子青年4x100米混合接力");
         ArrayList<String> teacherFieldEvents = new ArrayList<>();
+        department.add("请选择--");
         teacherFieldEvents.add("教工男子青年铅球");
         teacherFieldEvents.add("教工男子青年跳高");
         teacherFieldEvents.add("教工女子青年跳远");
@@ -132,5 +136,15 @@ public class BeanList {
         lists.add(beanList);
 
         return lists;
+    }
+
+    public static List<String> getDataTypetitle() {
+        ArrayList<String> strings = new ArrayList<>();
+        strings.add("请选择--");
+        strings.add("径赛");
+        strings.add("田赛");
+
+
+        return strings;
     }
 }
