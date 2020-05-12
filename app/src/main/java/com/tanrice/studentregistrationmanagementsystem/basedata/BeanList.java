@@ -1,4 +1,4 @@
-package com.tanrice.studentregistrationmanagementsystem;
+package com.tanrice.studentregistrationmanagementsystem.basedata;
 
 import java.util.ArrayList;
 import java.util.List;
