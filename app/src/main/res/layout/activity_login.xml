@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@color/color_white"
-    tools:context=".RegisterActivity">
-
+    android:background="@color/color_white">
 
     <include
         android:id="@+id/include7"
@@ -101,20 +98,20 @@
             />
 
 
-        <EditText
-            android:layout_marginLeft="@dimen/dp_5"
-            android:layout_toRightOf="@+id/account_number"
-            android:id="@+id/account_number_content"
-            android:ems="10"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/color_00000000"
-            android:hint="账号为纯数字"
-            android:includeFontPadding="false"
-            android:inputType="textPassword"
-            android:textColor="@color/color_333333"
-            android:textCursorDrawable="@drawable/edittext_cursor"
-            android:textSize="15sp" />
+    <EditText
+        android:layout_marginLeft="@dimen/dp_5"
+        android:layout_toRightOf="@+id/account_number"
+        android:id="@+id/account_number_content"
+        android:ems="10"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_00000000"
+        android:hint="账号为纯数字"
+        android:includeFontPadding="false"
+        android:inputType="textPassword"
+        android:textColor="@color/color_333333"
+        android:textCursorDrawable="@drawable/edittext_cursor"
+        android:textSize="15sp" />
 
     </RelativeLayout>
 
@@ -294,7 +291,7 @@
     </RadioGroup>
 
     <Button
-        android:id="@+id/register"
+        android:id="@+id/login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dp_15"
@@ -305,13 +302,13 @@
         android:layout_margin="@dimen/dp_15"
         android:textSize="@dimen/sp_16"
         android:background="@drawable/role_operation_manager_activity_apply_certificate_btn_apply_bg"
-        android:text="注册"/>
+        android:text="登陆"/>
 
     <TextView
-        android:id="@+id/login"
+        android:id="@+id/register"
         android:layout_width="@dimen/dp_50"
         android:layout_height="@dimen/dp_20"
-        android:text="登录"
+        android:text="注册"
         android:textAllCaps="true"
         android:textColor="@color/color_black"
         android:textStyle="bold|italic"
