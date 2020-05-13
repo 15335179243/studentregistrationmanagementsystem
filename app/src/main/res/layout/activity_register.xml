@@ -111,7 +111,7 @@
             android:background="@color/color_00000000"
             android:hint="账号为纯数字"
             android:includeFontPadding="false"
-            android:inputType="textPassword"
+            android:inputType="number"
             android:textColor="@color/color_333333"
             android:textCursorDrawable="@drawable/edittext_cursor"
             android:textSize="15sp" />
@@ -149,7 +149,6 @@
             android:ems="10"
             android:hint="真实姓名"
             android:includeFontPadding="false"
-            android:inputType="textPassword"
             android:textColor="@color/color_333333"
             android:textCursorDrawable="@drawable/edittext_cursor"
             android:textSize="15sp" />
@@ -187,7 +186,6 @@
             android:hint="八位数字"
             android:ems="10"
             android:includeFontPadding="false"
-            android:inputType="textPassword"
             android:textColor="@color/color_333333"
             android:textCursorDrawable="@drawable/edittext_cursor"
             android:textSize="15sp" />
