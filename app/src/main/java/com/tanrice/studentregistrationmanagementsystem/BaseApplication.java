@@ -4,6 +4,7 @@ package com.tanrice.studentregistrationmanagementsystem;
 import android.content.Context;
 
 
+import com.tanrice.studentregistrationmanagementsystem.basedata.User;
 import com.tanrice.studentregistrationmanagementsystem.dao.DaoMaster;
 import com.tanrice.studentregistrationmanagementsystem.dao.DaoSession;
 import com.tanrice.studentregistrationmanagementsystem.pic.DisplayU;
@@ -14,6 +15,7 @@ import androidx.multidex.MultiDex;
 public class BaseApplication extends APPAplication {
     public static BaseApplication sApplication;
     private static DaoSession mDaoSession;
+    public User userBean;
 
 
     @Override

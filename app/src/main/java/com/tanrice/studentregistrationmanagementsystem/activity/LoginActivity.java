@@ -216,6 +216,7 @@ public class LoginActivity extends BaseActivity {
                     return;
                 }
                 showToast("登陆成功");
+                mApplication.userBean=user;
                 Intent intent1 = new Intent(LoginActivity.this, ApplyActivity.class);
                 startActivity(intent1);
                 finish();

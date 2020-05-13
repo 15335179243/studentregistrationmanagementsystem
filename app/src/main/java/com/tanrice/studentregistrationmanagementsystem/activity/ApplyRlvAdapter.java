@@ -94,7 +94,7 @@ public class ApplyRlvAdapter extends RecyclerView.Adapter {
                 holder1.mTvTitle.setText("项目三");
             }
 
-            ArrayAdapter<String> departmentAdapter = new ArrayAdapter<String>(viewHolder.itemView.getContext(), android.R.layout.simple_spinner_item, new String[]{"请选择--","径赛", "田赛"});
+            ArrayAdapter<String> departmentAdapter = new ArrayAdapter<String>(viewHolder.itemView.getContext(), android.R.layout.simple_spinner_item, BeanList.getDataTypetitle());
             departmentAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
             holder1.mNoeSpinner.setAdapter(departmentAdapter);
             holder1.mNoeSpinner.setSelection(projectSelect.getUserPrject(),false);

@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.tanrice.studentregistrationmanagementsystem.NoticeAdapter;
 import com.tanrice.studentregistrationmanagementsystem.R;
+import com.tanrice.studentregistrationmanagementsystem.basedata.BeanList;
 
 import java.util.ArrayList;
 
@@ -48,12 +49,7 @@ public class NoticeActivity extends BaseActivity {
     @Override
     public void initView() {
         mArrayLists = new ArrayList<>();
-        ArrayList<String> strings = new ArrayList<>();
-        strings.add("http://chuantu.xyz/t6/733/1589182114x3661913030.jpg");
-        strings.add("http://chuantu.xyz/t6/733/1589182164x3703728804.jpg");
-        strings.add("http://chuantu.xyz/t6/733/1589182204x3703728804.jpg");
-        strings.add("http://chuantu.xyz/t6/733/1589182227x3661913030.jpg");
-        mArrayLists.add(strings);
+                mArrayLists.add((ArrayList<String>) BeanList.getDataNotice());
         mTvTitle.setText("公告");
         mRlvList.setLayoutManager(new LinearLayoutManager(this));
         NoticeAdapter noticeAdapter = new NoticeAdapter(mArrayLists);
@@ -62,7 +58,7 @@ public class NoticeActivity extends BaseActivity {
             @Override
             public void onClick(View v, int i) {
                 Intent intent = new Intent(NoticeActivity.this, ScanMediaActivity.class);
-                intent.putStringArrayListExtra("list",mArrayLists.get(0));
+                intent.putStringArrayListExtra("list", (ArrayList<String>) BeanList.getDataNotice());
                 startActivity(intent);
                 finish();
             }

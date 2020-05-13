@@ -10,6 +10,7 @@ import com.google.gson.Gson;
 import com.tanrice.studentregistrationmanagementsystem.BaseDialog.CommonTipDialog;
 import com.tanrice.studentregistrationmanagementsystem.R;
 import com.tanrice.studentregistrationmanagementsystem.basedata.BeanProjectSelect;
+import com.tanrice.studentregistrationmanagementsystem.basedata.User;
 import com.tanrice.studentregistrationmanagementsystem.basedata.UserProject;
 import com.tanrice.studentregistrationmanagementsystem.basedata.UserProjectDB;
 
@@ -34,6 +35,8 @@ public class ApplyLIstActivity extends BaseActivity {
     private Long mStudentNumber;
 
     private ApplyListRlvAdapter mRlvAdapter;
+    private User bean;
+
 
     @Override
     public int getLayoutId() {
@@ -46,18 +49,18 @@ public class ApplyLIstActivity extends BaseActivity {
         steStatusBar(true);
         mTvTitle.setText("已报名项目");
         mStudentNumber = getIntent().getLongExtra("studentNumber", 0);
-
+        bean = mApplication.userBean;
 
     }
 
     @Override
     public void initData() {
-        UserProject userProject = UserProjectDB.queryItem(new UserProject(mStudentNumber, ""));
+        UserProject userProject = UserProjectDB.queryItem(new UserProject(mStudentNumber, bean.getDepartment(), bean.getStudent(), bean.getTeacher(), bean.getName(), bean.getUserName(), bean.getGender(), ""));
         BeanProjectSelect beanProjectSelect = new Gson().fromJson(userProject.getJson(), BeanProjectSelect.class);
         beanProjectSelect.getList();
         mRlv.setLayoutManager(new LinearLayoutManager(this));
         mRlv.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-        mRlvAdapter = new ApplyListRlvAdapter(mStudentNumber);
+        mRlvAdapter = new ApplyListRlvAdapter(mStudentNumber.toString());
         mRlv.setAdapter(mRlvAdapter);
         mRlvAdapter.setnewList(beanProjectSelect.getList());
         mRlvAdapter.setOnClickListener(new ApplyListRlvAdapter.OnClickListener() {
@@ -104,7 +107,7 @@ public class ApplyLIstActivity extends BaseActivity {
             default:
                 break;
             case R.id.track:
-                startActivity(new Intent(ApplyLIstActivity.this,NoticeActivity.class));
+                startActivity(new Intent(ApplyLIstActivity.this, NoticeActivity.class));
                 break;
         }
     }

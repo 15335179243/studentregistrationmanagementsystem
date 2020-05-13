@@ -20,6 +20,7 @@ import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+
 public class ScanMediaActivity extends BaseActivity {
     @BindView(R.id.activity_scan_media_pager)
     PreviewViewPager mMediaPager;

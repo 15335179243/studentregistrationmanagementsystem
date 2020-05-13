@@ -143,8 +143,18 @@ public class BeanList {
         strings.add("请选择--");
         strings.add("径赛");
         strings.add("田赛");
-
-
         return strings;
     }
+///修改公告图片
+//    http://chuantu.biz/
+//    上面是上传图片地址,想要的图片上传了,把地址添加进去集合
+    public static List<String> getDataNotice() {
+        ArrayList<String> strings = new ArrayList<>();
+        strings.add("http://chuantu.xyz/t6/733/1589182114x3661913030.jpg");
+        strings.add("http://chuantu.xyz/t6/733/1589182164x3703728804.jpg");
+        strings.add("http://chuantu.xyz/t6/733/1589182204x3703728804.jpg");
+        strings.add("http://chuantu.xyz/t6/733/1589182227x3661913030.jpg");
+        return strings;
+    }
+
 }

@@ -8,10 +8,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.tanrice.studentregistrationmanagementsystem.APPAplication;
+import com.tanrice.studentregistrationmanagementsystem.BaseApplication;
 import com.tanrice.studentregistrationmanagementsystem.BaseDialog.CommonTipDialog;
 import com.tanrice.studentregistrationmanagementsystem.R;
 import com.tanrice.studentregistrationmanagementsystem.basedata.BeanList;
 import com.tanrice.studentregistrationmanagementsystem.basedata.BeanProjectSelect;
+import com.tanrice.studentregistrationmanagementsystem.basedata.User;
 import com.tanrice.studentregistrationmanagementsystem.basedata.UserProject;
 import com.tanrice.studentregistrationmanagementsystem.basedata.UserProjectDB;
 
@@ -38,7 +41,8 @@ public class ApplyActivity extends BaseActivity {
     private ApplyRlvAdapter mRlvAdapter;
     private ArrayList<ArrayList<BeanList>> mList;
     private ArrayList<BeanList> mData;
-    private long studentNumber = 16111111;
+    private long studentNumber;
+    private User bean;
 
     @Override
     public int getLayoutId() {
@@ -47,9 +51,8 @@ public class ApplyActivity extends BaseActivity {
 
     @Override
     public void initView() {
-//        Long.valueOf(studentNumber);
-        String studentNumber = getIntent().getStringExtra("studentNumber");
-        int isStudent = getIntent().getIntExtra("isStudent", 1);
+        bean = mApplication.userBean;
+        studentNumber = Long.valueOf(bean.getStudentNumber());
         steStatusBar(true);
         mImgBack.setVisibility(View.GONE);
         mTvTitle.setText("报名");
@@ -65,7 +68,11 @@ public class ApplyActivity extends BaseActivity {
         mRlvAdapter = new ApplyRlvAdapter();
         mRlv.setAdapter(mRlvAdapter);
         mRlvAdapter.setType(1);
-        mRlvAdapter.setIsStudent(1);
+        if (mApplication.userBean.getStudent()) {
+            mRlvAdapter.setIsStudent(1);
+        } else {
+            mRlvAdapter.setIsStudent(2);
+        }
         mRlvAdapter.setnewList(mList);
         mRlvAdapter.setOnClickListener(new ApplyRlvAdapter.OnClickListener() {
             @Override
@@ -137,11 +144,11 @@ public class ApplyActivity extends BaseActivity {
                         data1.setList(list);
                         String s = new Gson().toJson(data1);
 //                        Log.e("chumu", "没插入之前: " + new UserProject((long) 16111111, s).toString());
-                        UserProjectDB.insert(new UserProject((long) 16111111, s));
+                        UserProjectDB.insert(new UserProject(studentNumber,bean.getDepartment(), bean.getStudent(), bean.getTeacher(), bean.getName(), bean.getUserName(), bean.getGender(), s));
 //                        UserProject userProject = UserProjectDB.queryItem(new UserProject((long) 16111111, s));
 //                        Log.e("chumu", "没插入之后: " + userProject.toString());
                         Intent intent = new Intent(ApplyActivity.this, ApplyLIstActivity.class);
-                        intent.putExtra("studentNumber",studentNumber);
+                        intent.putExtra("studentNumber", studentNumber);
                         startActivity(intent);
                         finish();
 
