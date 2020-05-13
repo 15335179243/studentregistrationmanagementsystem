@@ -1,4 +1,4 @@
-package com.tanrice.studentregistrationmanagementsystem;
+package com.tanrice.studentregistrationmanagementsystem.activity;
 
 import android.content.Intent;
 import android.text.TextUtils;
@@ -13,6 +13,7 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.tanrice.studentregistrationmanagementsystem.R;
 import com.tanrice.studentregistrationmanagementsystem.basedata.BeanList;
 import com.tanrice.studentregistrationmanagementsystem.basedata.SQLHelper;
 import com.tanrice.studentregistrationmanagementsystem.basedata.User;
@@ -169,7 +170,7 @@ public class LoginActivity extends BaseActivity {
                     showToast("请输入验证码");
                     return;
                 } else {
-                    if (!mBeanSelected.getVerificationCode().equals("00581ys")) {
+                    if (!mBeanSelected.getVerificationCode().equals("00111")) {
                         showToast("验证码不正确,请联系校方获取验证码");
                         return;
                     }
@@ -214,8 +215,10 @@ public class LoginActivity extends BaseActivity {
                     showToast("请正确选老师或学生");
                     return;
                 }
-//                Intent intent1 = new Intent();
                 showToast("登陆成功");
+                Intent intent1 = new Intent(LoginActivity.this, ApplyActivity.class);
+                startActivity(intent1);
+                finish();
 
                 break;
             case R.id.register:

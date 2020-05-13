@@ -1,4 +1,4 @@
-package com.tanrice.studentregistrationmanagementsystem;
+package com.tanrice.studentregistrationmanagementsystem.activity;
 
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +8,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.tanrice.studentregistrationmanagementsystem.BaseApplication;
+import com.tanrice.studentregistrationmanagementsystem.R;
 import com.tanrice.studentregistrationmanagementsystem.pic.DisplayU;
 import com.tanrice.studentregistrationmanagementsystem.pic.PreviewViewPager;
 import com.tanrice.studentregistrationmanagementsystem.pic.ScanMediaPagerAdapter;

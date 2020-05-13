@@ -9,6 +9,10 @@ import org.greenrobot.greendao.identityscope.IdentityScopeType;
 import org.greenrobot.greendao.internal.DaoConfig;
 
 import com.tanrice.studentregistrationmanagementsystem.basedata.User;
+import com.tanrice.studentregistrationmanagementsystem.basedata.UserProject;
+
+import com.tanrice.studentregistrationmanagementsystem.dao.UserDao;
+import com.tanrice.studentregistrationmanagementsystem.dao.UserProjectDao;
 
 import com.tanrice.studentregistrationmanagementsystem.dao.UserDao;
 
@@ -22,8 +26,10 @@ import com.tanrice.studentregistrationmanagementsystem.dao.UserDao;
 public class DaoSession extends AbstractDaoSession {
 
     private final DaoConfig userDaoConfig;
+    private final DaoConfig userProjectDaoConfig;
 
     private final UserDao userDao;
+    private final UserProjectDao userProjectDao;
 
     public DaoSession(Database db, IdentityScopeType type, Map<Class<? extends AbstractDao<?, ?>>, DaoConfig>
             daoConfigMap) {
@@ -32,17 +38,27 @@ public class DaoSession extends AbstractDaoSession {
         userDaoConfig = daoConfigMap.get(UserDao.class).clone();
         userDaoConfig.initIdentityScope(type);
 
+        userProjectDaoConfig = daoConfigMap.get(UserProjectDao.class).clone();
+        userProjectDaoConfig.initIdentityScope(type);
+
         userDao = new UserDao(userDaoConfig, this);
+        userProjectDao = new UserProjectDao(userProjectDaoConfig, this);
 
         registerDao(User.class, userDao);
+        registerDao(UserProject.class, userProjectDao);
     }
     
     public void clear() {
         userDaoConfig.clearIdentityScope();
+        userProjectDaoConfig.clearIdentityScope();
     }
 
     public UserDao getUserDao() {
         return userDao;
+    }
+
+    public UserProjectDao getUserProjectDao() {
+        return userProjectDao;
     }
 
 }

@@ -112,6 +112,7 @@ public class User {
     public void setRegistrationProject(int registrationProject) {
         this.registrationProject = registrationProject;
     }
+   
 
 
 }

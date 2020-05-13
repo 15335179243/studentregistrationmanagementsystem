@@ -1,4 +1,4 @@
-package com.tanrice.studentregistrationmanagementsystem;
+package com.tanrice.studentregistrationmanagementsystem.activity;
 
 import android.view.View;
 import android.widget.AdapterView;
@@ -11,6 +11,7 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.tanrice.studentregistrationmanagementsystem.R;
 import com.tanrice.studentregistrationmanagementsystem.basedata.BeanList;
 import com.tanrice.studentregistrationmanagementsystem.basedata.SQLHelper;
 import com.tanrice.studentregistrationmanagementsystem.basedata.User;
@@ -94,7 +95,7 @@ public class RegisterActivity extends BaseActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 mBeanSelected.setSchool(adapterView.getItemAtPosition(i).toString());
-                showToast("" + adapterView.getItemAtPosition(i).toString());
+//                showToast("" + adapterView.getItemAtPosition(i).toString());
             }
 
             @Override
@@ -122,10 +123,12 @@ public class RegisterActivity extends BaseActivity {
                         break;
                     case R.id.rd_student:
                         mBeanSelected.setStudent(true);
+                        mBeanSelected.setTeacher(false);
                         break;
 
                     case R.id.rd_teacher:
                         mBeanSelected.setTeacher(true);
+                        mBeanSelected.setStudent(false);
                         break;
                 }
             }
@@ -180,7 +183,7 @@ public class RegisterActivity extends BaseActivity {
                 } else {
                     String rate = "([1][6-9][0-9]{6})|([2][0][0-9]{6})";
                     if (!mBeanSelected.getStudentNumber().matches(rate)) {
-                        showToast(mBeanSelected.getStudentNumber());
+                        showToast("请正确输入学号");
                         return;
                     }
 
