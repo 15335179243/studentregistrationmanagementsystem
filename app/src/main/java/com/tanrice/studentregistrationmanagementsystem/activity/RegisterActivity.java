@@ -95,7 +95,7 @@ public class RegisterActivity extends BaseActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 mBeanSelected.setSchool(adapterView.getItemAtPosition(i).toString());
-                showToast("" + adapterView.getItemAtPosition(i).toString());
+//                showToast("" + adapterView.getItemAtPosition(i).toString());
             }
 
             @Override
@@ -123,10 +123,12 @@ public class RegisterActivity extends BaseActivity {
                         break;
                     case R.id.rd_student:
                         mBeanSelected.setStudent(true);
+                        mBeanSelected.setTeacher(false);
                         break;
 
                     case R.id.rd_teacher:
                         mBeanSelected.setTeacher(true);
+                        mBeanSelected.setStudent(false);
                         break;
                 }
             }

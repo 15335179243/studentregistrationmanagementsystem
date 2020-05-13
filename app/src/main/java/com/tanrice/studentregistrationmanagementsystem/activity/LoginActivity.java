@@ -211,10 +211,10 @@ public class LoginActivity extends BaseActivity {
                 if (!mBeanSelected.getPassword().equals(user.getUserPwd())) {
                     showToast("密码错误");
                 }
-//                if (!mBeanSelected.isTeacher().toString().equals(user.getTeacher().toString()) || !mBeanSelected.isStudent().toString().equals(user.getStudent().toString())) {
-//                    showToast("请正确选老师或学生");
-//                    return;
-//                }
+                if (!mBeanSelected.isTeacher().toString().equals(user.getTeacher().toString()) || !mBeanSelected.isStudent().toString().equals(user.getStudent().toString())) {
+                    showToast("请正确选老师或学生");
+                    return;
+                }
                 showToast("登陆成功");
                 Intent intent1 = new Intent(LoginActivity.this, ApplyActivity.class);
                 startActivity(intent1);
