@@ -1,6 +1,8 @@
 package com.tanrice.studentregistrationmanagementsystem.activity;
 
 import android.content.Intent;
+import android.os.Bundle;
+import android.os.SystemClock;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
@@ -12,6 +14,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.tanrice.studentregistrationmanagementsystem.R;
 import com.tanrice.studentregistrationmanagementsystem.basedata.BeanList;
@@ -24,14 +27,14 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends BaseActivity implements View.OnClickListener {
 
 
     @BindView(R.id.img_back)
     ImageView mImgBack;
     @BindView(R.id.tv_title)
     TextView mTvTitle;
-    @BindView(R.id.school)
+    @BindView(R.id.set)
     TextView mSchool;
     @BindView(R.id.spinner_department)
     Spinner mSpinnerDepartment;
@@ -63,12 +66,24 @@ public class LoginActivity extends BaseActivity {
     RadioGroup mRadioGroup;
     @BindView(R.id.login)
     Button mLogin;
-    @BindView(R.id.spinner_school)
+    @BindView(R.id.set_content)
     Spinner mSpinnerSchool;
     @BindView(R.id.register)
     TextView mRegister;
+    @BindView(R.id.img_guanliyuan)
+    ImageView mAdmin;
     private List<BeanList> mData;
     private BeanSelected mBeanSelected;
+    final static int COUNTS = 5;// 点击次数
+    final static long DURATION = 800;// 规定有效时间
+    long[] mHits = new long[COUNTS];
+
+    /**
+     * 学校:
+     */
+    private TextView mSet;
+    private Spinner mSetContent;
+    private ImageView mImgGuanliyuan;
 
     @Override
     public int getLayoutId() {
@@ -81,6 +96,7 @@ public class LoginActivity extends BaseActivity {
         mImgBack.setVisibility(View.GONE);
         mData = BeanList.getData();
         mBeanSelected = new BeanSelected();
+
     }
 
     @Override
@@ -137,7 +153,7 @@ public class LoginActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.img_back, R.id.login, R.id.register})
+    @OnClick({R.id.img_back, R.id.login, R.id.register, R.id.img_guanliyuan})
     public void onClick(View v) {
         switch (v.getId()) {
             default:
@@ -216,7 +232,7 @@ public class LoginActivity extends BaseActivity {
                     return;
                 }
                 showToast("登陆成功");
-                mApplication.userBean=user;
+                mApplication.userBean = user;
                 Intent intent1 = new Intent(LoginActivity.this, ApplyActivity.class);
                 startActivity(intent1);
                 finish();
@@ -226,8 +242,33 @@ public class LoginActivity extends BaseActivity {
                 Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.img_guanliyuan:
+
+                continuousClick(COUNTS, DURATION);
+                break;
         }
     }
 
 
+    private void continuousClick(int count, long time) {
+//每次点击时，数组向前移动一位
+        System.arraycopy(mHits, 1, mHits, 0, mHits.length - 1);
+//为数组最后一位赋值
+        mHits[mHits.length - 1] = SystemClock.uptimeMillis();
+        if (mHits[0] >= (SystemClock.uptimeMillis() - DURATION)) {
+            mHits = new long[COUNTS];//重新初始化数组
+            showToast("进入管理员系统");
+            Intent intent = new Intent(LoginActivity.this, AdministratorActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
+    }
 }
+
+
+
+
+
+
+

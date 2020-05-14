@@ -62,7 +62,7 @@ public class ApplyListRlvAdapter extends RecyclerView.Adapter {
         } else {
             ViewHolderOne holder1 = (ViewHolderOne) viewHolder;
             holder1.mNoeSpinnerContent.setText(mList.get(i).getUserPrjectstr());
-            holder1.mTvStudentNumberContent.setText(mStudentNumber.toString());
+            holder1.mTvStudentNumberContent.setText(mStudentNumber);
             holder1.mTowSpinnerContent.setText(mList.get(i).getUserConetentstr());
             holder1.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override

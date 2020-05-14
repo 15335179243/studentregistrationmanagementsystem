@@ -336,7 +336,7 @@ public class DateUtils {
 
     public static Long getStringToData(String data) throws ParseException {
         Calendar calendar = Calendar.getInstance();
-        calendar.setTime(new SimpleDateFormat("yyyy.MM.dd.HH:mm").parse(data));
+        calendar.setTime(new SimpleDateFormat("yyyyMMdd").parse(data));
         return calendar.getTimeInMillis();
     }
 

@@ -21,7 +21,7 @@ android {
     }
     greendao {
         //版本号，升级时可配置
-        schemaVersion 1
+        schemaVersion 3
         //生成的DAO，DaoMaster和DaoSession的包路径。默认与表实体所在的包路径相同
 //        daoPackage 'learn.yfg.com.testgreendao.db'
         //生成的DAO，DaoMaster和DaoSession的加密包路径。默认与表实体所在的包路径相同

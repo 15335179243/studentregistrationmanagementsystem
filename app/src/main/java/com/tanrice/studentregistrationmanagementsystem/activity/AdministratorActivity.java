@@ -1,10 +1,13 @@
 package com.tanrice.studentregistrationmanagementsystem.activity;
 
 import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.tanrice.studentregistrationmanagementsystem.BaseDialog.CommonTipDialog;
 import com.tanrice.studentregistrationmanagementsystem.R;
@@ -13,10 +16,12 @@ import com.tanrice.studentregistrationmanagementsystem.basedata.UserProjectDB;
 
 import java.util.List;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class AdministratorActivity extends BaseActivity {
@@ -32,6 +37,12 @@ public class AdministratorActivity extends BaseActivity {
     RecyclerView mRlvList;
     @BindView(R.id.export)
     Button mExport;
+    @BindView(R.id.constraintLayout)
+    ConstraintLayout mConstraintLayout;
+    @BindView(R.id.textView2)
+    TextView mTextView2;
+    @BindView(R.id.time_set)
+    ConstraintLayout mTimeSet;
     private RlvAdministratorAdapter mRlvAdministratorAdapter;
 
     @Override
@@ -52,6 +63,14 @@ public class AdministratorActivity extends BaseActivity {
         List<UserProject> userProjects = UserProjectDB.queryAll();
         if (userProjects != null && userProjects.size() > 0) {
             mRlvAdministratorAdapter.setNewlist(userProjects);
+            Log.e("chumu", "initData: "+  userProjects.toString() );
+
+        }else {
+            mExport.setVisibility(View.GONE);
+            mRlvList.setVisibility(View.GONE);
+            mTimeSet.setVisibility(View.VISIBLE);
+            mTextView2.setText("糟糕!还没有人报名,快去通知报名吧!");
+            return;
         }
         mRlvAdministratorAdapter.setOnClickListener(new RlvAdministratorAdapter.OnClickListener() {
             @Override
@@ -106,4 +125,6 @@ public class AdministratorActivity extends BaseActivity {
                     }
                 });
     }
+
+
 }

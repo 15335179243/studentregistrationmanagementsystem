@@ -17,13 +17,20 @@
         android:theme="@style/NoAppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activity.SetActivity"></activity>
-        <activity android:name=".activity.AdministratorDetailsActivity" />
+        <activity android:name=".activity.SetActivity">
+
+        </activity>
+        <activity android:name=".activity.AdministratorDetailsActivity" >
+
+        </activity>
         <activity android:name=".activity.AdministratorActivity" />
         <activity
             android:name=".activity.ApplyLIstActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".activity.ApplyActivity" />
+        <activity android:name=".activity.ApplyActivity" >
+
+
+        </activity>
         <activity
             android:name=".activity.NoticeActivity"
             android:screenOrientation="portrait" />

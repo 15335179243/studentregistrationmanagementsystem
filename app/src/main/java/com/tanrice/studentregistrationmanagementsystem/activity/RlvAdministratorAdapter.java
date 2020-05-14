@@ -65,7 +65,9 @@ public class RlvAdministratorAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return mList.size();
+        if (mList!=null) {
+            return mList.size();
+        }else return 0;
     }
 
     public void setNewlist(List<UserProject> list) {

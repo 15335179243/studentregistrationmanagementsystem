@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.chumu.dt.v24.permissions.ChuMuSharedPreferences;
 import com.google.gson.Gson;
 import com.tanrice.studentregistrationmanagementsystem.BaseDialog.CommonTipDialog;
 import com.tanrice.studentregistrationmanagementsystem.R;
@@ -13,7 +14,12 @@ import com.tanrice.studentregistrationmanagementsystem.basedata.BeanProjectSelec
 import com.tanrice.studentregistrationmanagementsystem.basedata.User;
 import com.tanrice.studentregistrationmanagementsystem.basedata.UserProject;
 import com.tanrice.studentregistrationmanagementsystem.basedata.UserProjectDB;
+import com.tanrice.studentregistrationmanagementsystem.utils.DateUtils;
 
+import java.text.ParseException;
+import java.util.Date;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,6 +38,14 @@ public class ApplyLIstActivity extends BaseActivity {
     RecyclerView mRlv;
     @BindView(R.id.track)
     TextView mTrack;
+    @BindView(R.id.include2)
+    ConstraintLayout mInclude2;
+    @BindView(R.id.imageView2)
+    ImageView mImageView2;
+    @BindView(R.id.textView2)
+    TextView mTextView2;
+    @BindView(R.id.time_set)
+    ConstraintLayout mTimeSet;
     private Long mStudentNumber;
 
     private ApplyListRlvAdapter mRlvAdapter;
@@ -45,6 +59,22 @@ public class ApplyLIstActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        String value = (String) new ChuMuSharedPreferences(this, "time").getValue("times", "");
+        if (!value .isEmpty()) {
+            try {
+                Long data = DateUtils.getStringToData(value);
+
+                long currentTimeMillis = DateUtils.getCurrentTimeMillis();
+                int i = DateUtils.compareDate(new Date(data), new Date(currentTimeMillis));
+                if (i == -1) {
+                    mTimeSet.setVisibility(View.VISIBLE);
+                    mRlv.setVisibility(View.GONE);
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+        }
         mImgBack.setVisibility(View.GONE);
         steStatusBar(true);
         mTvTitle.setText("已报名项目");
@@ -111,4 +141,5 @@ public class ApplyLIstActivity extends BaseActivity {
                 break;
         }
     }
+
 }
