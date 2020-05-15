@@ -38,7 +38,7 @@ public class ScanMediaActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        ButterKnife.bind(this);
+
         translucentFit(mTitleRl);
 
     }

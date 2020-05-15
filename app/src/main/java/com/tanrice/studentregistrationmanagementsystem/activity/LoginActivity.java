@@ -20,6 +20,8 @@ import com.tanrice.studentregistrationmanagementsystem.R;
 import com.tanrice.studentregistrationmanagementsystem.basedata.BeanList;
 import com.tanrice.studentregistrationmanagementsystem.basedata.SQLHelper;
 import com.tanrice.studentregistrationmanagementsystem.basedata.User;
+import com.tanrice.studentregistrationmanagementsystem.basedata.UserProject;
+import com.tanrice.studentregistrationmanagementsystem.basedata.UserProjectDB;
 import com.tanrice.studentregistrationmanagementsystem.dao.BeanSelected;
 
 import java.util.List;
@@ -186,7 +188,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     showToast("请输入验证码");
                     return;
                 } else {
-                    if (!mBeanSelected.getVerificationCode().equals("00111")) {
+                    if (!BeanList.getVerificationCode().contains(mBeanSelected.getVerificationCode())) {
                         showToast("验证码不正确,请联系校方获取验证码");
                         return;
                     }
@@ -233,7 +235,15 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 }
                 showToast("登陆成功");
                 mApplication.userBean = user;
-                Intent intent1 = new Intent(LoginActivity.this, ApplyActivity.class);
+                UserProject userProject = UserProjectDB.queryItem(new UserProject(Long.valueOf(mApplication.userBean.getStudentNumber())));
+                Intent intent1=null;
+                if (userProject!=null&&userProject.getJson()!=null) {
+                    intent1 = new Intent(LoginActivity.this, ApplyLIstActivity.class);
+                }else {
+                    intent1 = new Intent(LoginActivity.this, ApplyActivity.class);
+
+                }
+
                 startActivity(intent1);
                 finish();
 

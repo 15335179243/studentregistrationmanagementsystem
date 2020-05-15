@@ -60,7 +60,7 @@ public class NoticeActivity extends BaseActivity {
                 Intent intent = new Intent(NoticeActivity.this, ScanMediaActivity.class);
                 intent.putStringArrayListExtra("list", (ArrayList<String>) BeanList.getDataNotice());
                 startActivity(intent);
-                finish();
+
             }
         });
     }

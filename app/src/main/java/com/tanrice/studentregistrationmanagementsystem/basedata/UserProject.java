@@ -80,6 +80,10 @@ public class UserProject {
         this.json = json;
     }
 
+    public UserProject(Long studentNumber) {
+        this.studentNumber = studentNumber;
+    }
+
     @Override
     public String toString() {
         return "UserProject{" +

@@ -151,9 +151,17 @@ public class BeanList {
     public static List<String> getDataNotice() {
         ArrayList<String> strings = new ArrayList<>();
         strings.add("http://chuantu.xyz/t6/733/1589182114x3661913030.jpg");
-        strings.add("http://chuantu.xyz/t6/733/1589182164x3703728804.jpg");
-        strings.add("http://chuantu.xyz/t6/733/1589182204x3703728804.jpg");
-        strings.add("http://chuantu.xyz/t6/733/1589182227x3661913030.jpg");
+//        strings.add("http://chuantu.xyz/t6/733/1589182164x3703728804.jpg");
+//        strings.add("http://chuantu.xyz/t6/733/1589182204x3703728804.jpg");
+//        strings.add("http://chuantu.xyz/t6/733/1589182227x3661913030.jpg");
+        return strings;
+    }
+
+    public static List<String> getVerificationCode () {
+        ArrayList<String> strings = new ArrayList<>();
+        strings.add("00581ys");
+        strings.add("00111");
+
         return strings;
     }
 

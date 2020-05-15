@@ -171,7 +171,7 @@ public class RegisterActivity extends BaseActivity {
                     showToast("请输入验证码");
                     return;
                 } else {
-                    if (!mBeanSelected.getVerificationCode().equals("00581ys")) {
+                    if (!BeanList.getVerificationCode().contains(mBeanSelected.getVerificationCode()))  {
                         showToast("非本校学生不能注册");
                         return;
                     }

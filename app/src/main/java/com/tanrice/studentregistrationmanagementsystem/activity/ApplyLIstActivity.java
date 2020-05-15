@@ -46,7 +46,7 @@ public class ApplyLIstActivity extends BaseActivity {
     TextView mTextView2;
     @BindView(R.id.time_set)
     ConstraintLayout mTimeSet;
-    private Long mStudentNumber;
+
 
     private ApplyListRlvAdapter mRlvAdapter;
     private User bean;
@@ -78,19 +78,18 @@ public class ApplyLIstActivity extends BaseActivity {
         mImgBack.setVisibility(View.GONE);
         steStatusBar(true);
         mTvTitle.setText("已报名项目");
-        mStudentNumber = getIntent().getLongExtra("studentNumber", 0);
         bean = mApplication.userBean;
 
     }
 
     @Override
     public void initData() {
-        UserProject userProject = UserProjectDB.queryItem(new UserProject(mStudentNumber, bean.getDepartment(), bean.getStudent(), bean.getTeacher(), bean.getName(), bean.getUserName(), bean.getGender(), ""));
+        UserProject userProject = UserProjectDB.queryItem(new UserProject(Long.valueOf(bean.getStudentNumber()), bean.getDepartment(), bean.getStudent(), bean.getTeacher(), bean.getName(), bean.getUserName(), bean.getGender(), ""));
         BeanProjectSelect beanProjectSelect = new Gson().fromJson(userProject.getJson(), BeanProjectSelect.class);
         beanProjectSelect.getList();
         mRlv.setLayoutManager(new LinearLayoutManager(this));
         mRlv.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-        mRlvAdapter = new ApplyListRlvAdapter(mStudentNumber.toString());
+        mRlvAdapter = new ApplyListRlvAdapter(bean.getStudentNumber());
         mRlv.setAdapter(mRlvAdapter);
         mRlvAdapter.setnewList(beanProjectSelect.getList());
         mRlvAdapter.setOnClickListener(new ApplyListRlvAdapter.OnClickListener() {
