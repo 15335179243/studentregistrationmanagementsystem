@@ -78,15 +78,17 @@ public class AdministratorActivity extends BaseActivity {
                 Intent intent = new Intent(AdministratorActivity.this, AdministratorDetailsActivity.class);
                 intent.putExtra("studentNumber", String.valueOf(mRlvAdministratorAdapter.mList.get(i).getStudentNumber()));
                 intent.putExtra("json", mRlvAdministratorAdapter.mList.get(i).getJson());
-
+                startActivity(intent);
             }
         });
-        mRlvAdministratorAdapter.setOnClickListener(new RlvAdministratorAdapter.OnClickListener() {
+        mRlvAdministratorAdapter.setOnLongClickListener(new RlvAdministratorAdapter.OnLongClickListener() {
             @Override
-            public void onClick(View v, int i) {
+            public void onLongClick(View v, int i) {
                 showDialog("否", "是", "是否要删除此条报名信息", i);
             }
         });
+
+
     }
 
 
