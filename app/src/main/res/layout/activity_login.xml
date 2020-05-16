@@ -6,14 +6,69 @@
     android:orientation="vertical"
     android:background="@color/color_white">
 
-    <include
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/include7"
-        layout="@layout/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/dp_70"
+        android:background="@drawable/bg_toolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <ImageView
+            android:id="@+id/img_back"
+            android:layout_width="@dimen/dp_25"
+            android:layout_height="@dimen/dp_25"
+            android:layout_marginStart="@dimen/dp_10"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline3"
+            app:srcCompat="@mipmap/img_back" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="@dimen/dp_110"
+            android:layout_height="@dimen/dp_33"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:text="报名管理系统"
+            android:textColor="#ff3a3a3a"
+            android:textSize="@dimen/sp_17"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline3" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="@dimen/dp_20" />
+
+        <TextView
+            android:id="@+id/img_guanliyuan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:gravity="center"
+            android:text="管理员"
+            android:textColor="@android:color/holo_blue_light"
+            android:textSize="@dimen/sp_18"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline3" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
 
@@ -108,7 +163,6 @@
         android:background="@color/color_00000000"
         android:hint="账号为纯数字"
         android:includeFontPadding="false"
-        android:inputType="textPassword"
         android:textColor="@color/color_333333"
         android:textCursorDrawable="@drawable/edittext_cursor"
         android:textSize="15sp" />
@@ -146,7 +200,6 @@
             android:ems="10"
             android:hint="真实姓名"
             android:includeFontPadding="false"
-            android:inputType="textPassword"
             android:textColor="@color/color_333333"
             android:textCursorDrawable="@drawable/edittext_cursor"
             android:textSize="15sp" />
@@ -168,7 +221,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/color_black"
-            android:text="学号:"
+            android:text="学号(工号):"
             android:textSize="@dimen/sp_15"
             android:layout_centerVertical="true"
             />
@@ -184,7 +237,6 @@
             android:hint="八位数字"
             android:ems="10"
             android:includeFontPadding="false"
-            android:inputType="textPassword"
             android:textColor="@color/color_333333"
             android:textCursorDrawable="@drawable/edittext_cursor"
             android:textSize="15sp" />
@@ -258,7 +310,6 @@
             android:background="@color/color_00000000"
             android:hint="请输入验证码"
             android:includeFontPadding="false"
-            android:inputType="textPassword"
             android:textColor="@color/color_333333"
             android:textCursorDrawable="@drawable/edittext_cursor"
             android:textSize="15sp" />

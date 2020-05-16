@@ -170,7 +170,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/color_black"
-            android:text="学号:"
+            android:text="学号(工号):"
             android:textSize="@dimen/sp_15"
             android:layout_centerVertical="true"
             />
@@ -259,7 +259,6 @@
             android:background="@color/color_00000000"
             android:hint="请输入验证码"
             android:includeFontPadding="false"
-            android:inputType="textPassword"
             android:textColor="@color/color_333333"
             android:textCursorDrawable="@drawable/edittext_cursor"
             android:textSize="15sp" />
