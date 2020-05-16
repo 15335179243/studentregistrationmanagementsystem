@@ -3,5 +3,5 @@
     <item android:drawable="@color/color_ef"></item>
     <item
         android:bottom="1dp"
-        android:drawable="@color/color_white"></item>
+        android:drawable="@android:color/white"></item>
 </layer-list>

@@ -5,12 +5,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
+
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static java.security.AccessController.getContext;
 
 public class NoticeAdapter extends RecyclerView.Adapter {
     private ArrayList<ArrayList<String>> mStrings;
@@ -18,6 +26,7 @@ public class NoticeAdapter extends RecyclerView.Adapter {
 
     public NoticeAdapter(ArrayList<ArrayList<String>> strings) {
         mStrings = strings;
+
     }
 
 
@@ -31,15 +40,15 @@ public class NoticeAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
         ViewHolder holder = (ViewHolder) viewHolder;
-        Glide.with(holder.itemView.getContext()).load(mStrings.get(0).get(i)).into(holder.mImageView);
-        Glide.with(holder.itemView.getContext()).load(mStrings.get(0).get(i)).into(holder.mImageView2);
-        Glide.with(holder.itemView.getContext()).load(mStrings.get(0).get(i)).into(holder.mImageView3);
-        Glide.with(holder.itemView.getContext()).load(mStrings.get(0).get(i)).into(holder.mImageView4);
-        if (mOnClickListener!=null){
+        holder.mRecyclerView.setLayoutManager(new GridLayoutManager(holder.itemView.getContext(), 2));
+
+        RlvNoticeAdapter rlvNoticeAdapter = new RlvNoticeAdapter(mStrings.get(i));
+        holder.mRecyclerView.setAdapter(rlvNoticeAdapter);
+        if (mOnClickListener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    mOnClickListener.onClick(v,i);
+                    mOnClickListener.onClick(v, i);
                 }
             });
         }
@@ -49,26 +58,21 @@ public class NoticeAdapter extends RecyclerView.Adapter {
     public int getItemCount() {
         return mStrings.size();
     }
-   public void setOnClickListener(OnClickListener OnClickListener) {
-           mOnClickListener = OnClickListener;
-       }
 
-       public interface OnClickListener {
-           void onClick(View v, int i);
-       }
+    public void setOnClickListener(OnClickListener OnClickListener) {
+        mOnClickListener = OnClickListener;
+    }
+
+    public interface OnClickListener {
+        void onClick(View v, int i);
+    }
 
     static
     class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.tv_text)
         TextView mTvText;
-        @BindView(R.id.imageView3)
-        ImageView mImageView3;
-        @BindView(R.id.imageView4)
-        ImageView mImageView4;
-        @BindView(R.id.imageView2)
-        ImageView mImageView2;
-        @BindView(R.id.imageView)
-        ImageView mImageView;
+        @BindView(R.id.rlv_list)
+        RecyclerView mRecyclerView;
 
         ViewHolder(View view) {
             super(view);

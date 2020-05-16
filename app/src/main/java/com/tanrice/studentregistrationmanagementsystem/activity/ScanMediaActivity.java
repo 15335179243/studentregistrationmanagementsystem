@@ -1,9 +1,11 @@
 package com.tanrice.studentregistrationmanagementsystem.activity;
 
+import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -19,6 +21,8 @@ import java.util.ArrayList;
 import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 
 public class ScanMediaActivity extends BaseActivity {
     @BindView(R.id.activity_scan_media_pager)
@@ -27,6 +31,8 @@ public class ScanMediaActivity extends BaseActivity {
     TextView mTitleTv;
     @BindView(R.id.activity_scan_media_title_rl)
     View mTitleRl;
+    @BindView(R.id.activity_scan_media_pager_back_iv)
+    ImageView mActivityScanMediaPagerBackIv;
     private ArrayList<String> mStrings;
 
 
@@ -37,10 +43,11 @@ public class ScanMediaActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        ButterKnife.bind(this);
+
         translucentFit(mTitleRl);
 
     }
+
     @Override
     public void initData() {
         mStrings = getIntent().getStringArrayListExtra("list");
@@ -66,28 +73,31 @@ public class ScanMediaActivity extends BaseActivity {
         mTitleTv.setText(getString(R.string.divider_int, position + 1, mStrings.size()));
     }
 
-    static void translucentFit(View view){
+    static void translucentFit(View view) {
         ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
         DisplayU.init(BaseApplication.getAppContext());
         int topMargin = DisplayU.getStatusBarHeight();
-        if(layoutParams instanceof RelativeLayout.LayoutParams){
-            ((RelativeLayout.LayoutParams)layoutParams).topMargin = topMargin;
-        }else if(layoutParams instanceof FrameLayout.LayoutParams){
-            ((FrameLayout.LayoutParams)layoutParams).topMargin = topMargin;
-        }else if(layoutParams instanceof LinearLayout.LayoutParams){
-            ((LinearLayout.LayoutParams)layoutParams).topMargin = topMargin;
+        if (layoutParams instanceof RelativeLayout.LayoutParams) {
+            ((RelativeLayout.LayoutParams) layoutParams).topMargin = topMargin;
+        } else if (layoutParams instanceof FrameLayout.LayoutParams) {
+            ((FrameLayout.LayoutParams) layoutParams).topMargin = topMargin;
+        } else if (layoutParams instanceof LinearLayout.LayoutParams) {
+            ((LinearLayout.LayoutParams) layoutParams).topMargin = topMargin;
         }
         view.setLayoutParams(layoutParams);
     }
+
     private ViewPager.OnPageChangeListener mOnPageChangeListener = new ViewPager.OnPageChangeListener() {
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
         }
+
         @Override
         public void onPageSelected(int position) {
             showPositionIndicator(position);
         }
+
         @Override
         public void onPageScrollStateChanged(int state) {
 
@@ -95,4 +105,15 @@ public class ScanMediaActivity extends BaseActivity {
     };
 
 
+
+    @OnClick(R.id.activity_scan_media_pager_back_iv)
+    public void onClick(View v) {
+        switch (v.getId()) {
+            default:
+                break;
+            case R.id.activity_scan_media_pager_back_iv:
+                finish();
+                break;
+        }
+    }
 }

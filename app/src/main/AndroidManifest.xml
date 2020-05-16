@@ -6,7 +6,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <application
         android:name=".BaseApplication"
         android:allowBackup="true"
@@ -17,24 +18,27 @@
         android:theme="@style/NoAppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activity.ApplyLIstActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".activity.ApplyActivity" >
-        </activity>
+        <activity
+            android:name=".activity.ui.login.AdminLoginActivity"
+            android:label="@string/title_activity_admin_login"></activity>
+        <activity android:name=".activity.SetActivity"></activity>
+        <activity android:name=".activity.AdministratorDetailsActivity"></activity>
+        <activity android:name=".activity.AdministratorActivity" />
+        <activity
+            android:name=".activity.ApplyLIstActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activity.ApplyActivity"></activity>
         <activity
             android:name=".activity.NoticeActivity"
-            android:screenOrientation="portrait">
-
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".activity.LoginActivity"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".activity.RegisterActivity"

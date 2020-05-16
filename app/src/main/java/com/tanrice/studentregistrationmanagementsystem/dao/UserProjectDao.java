@@ -25,7 +25,13 @@ public class UserProjectDao extends AbstractDao<UserProject, Long> {
      */
     public static class Properties {
         public final static Property StudentNumber = new Property(0, Long.class, "studentNumber", true, "_id");
-        public final static Property Json = new Property(1, String.class, "json", false, "JSON");
+        public final static Property Department = new Property(1, String.class, "department", false, "DEPARTMENT");
+        public final static Property Student = new Property(2, Boolean.class, "student", false, "STUDENT");
+        public final static Property Teacher = new Property(3, Boolean.class, "teacher", false, "TEACHER");
+        public final static Property Name = new Property(4, String.class, "name", false, "NAME");
+        public final static Property UserName = new Property(5, String.class, "userName", false, "USER_NAME");
+        public final static Property Gender = new Property(6, String.class, "gender", false, "GENDER");
+        public final static Property Json = new Property(7, String.class, "json", false, "JSON");
     }
 
 
@@ -42,7 +48,13 @@ public class UserProjectDao extends AbstractDao<UserProject, Long> {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"USER_PROJECT\" (" + //
                 "\"_id\" INTEGER PRIMARY KEY ," + // 0: studentNumber
-                "\"JSON\" TEXT);"); // 1: json
+                "\"DEPARTMENT\" TEXT," + // 1: department
+                "\"STUDENT\" INTEGER," + // 2: student
+                "\"TEACHER\" INTEGER," + // 3: teacher
+                "\"NAME\" TEXT," + // 4: name
+                "\"USER_NAME\" TEXT," + // 5: userName
+                "\"GENDER\" TEXT," + // 6: gender
+                "\"JSON\" TEXT);"); // 7: json
     }
 
     /** Drops the underlying database table. */
@@ -60,9 +72,39 @@ public class UserProjectDao extends AbstractDao<UserProject, Long> {
             stmt.bindLong(1, studentNumber);
         }
  
+        String department = entity.getDepartment();
+        if (department != null) {
+            stmt.bindString(2, department);
+        }
+ 
+        Boolean student = entity.getStudent();
+        if (student != null) {
+            stmt.bindLong(3, student ? 1L: 0L);
+        }
+ 
+        Boolean teacher = entity.getTeacher();
+        if (teacher != null) {
+            stmt.bindLong(4, teacher ? 1L: 0L);
+        }
+ 
+        String name = entity.getName();
+        if (name != null) {
+            stmt.bindString(5, name);
+        }
+ 
+        String userName = entity.getUserName();
+        if (userName != null) {
+            stmt.bindString(6, userName);
+        }
+ 
+        String gender = entity.getGender();
+        if (gender != null) {
+            stmt.bindString(7, gender);
+        }
+ 
         String json = entity.getJson();
         if (json != null) {
-            stmt.bindString(2, json);
+            stmt.bindString(8, json);
         }
     }
 
@@ -75,9 +117,39 @@ public class UserProjectDao extends AbstractDao<UserProject, Long> {
             stmt.bindLong(1, studentNumber);
         }
  
+        String department = entity.getDepartment();
+        if (department != null) {
+            stmt.bindString(2, department);
+        }
+ 
+        Boolean student = entity.getStudent();
+        if (student != null) {
+            stmt.bindLong(3, student ? 1L: 0L);
+        }
+ 
+        Boolean teacher = entity.getTeacher();
+        if (teacher != null) {
+            stmt.bindLong(4, teacher ? 1L: 0L);
+        }
+ 
+        String name = entity.getName();
+        if (name != null) {
+            stmt.bindString(5, name);
+        }
+ 
+        String userName = entity.getUserName();
+        if (userName != null) {
+            stmt.bindString(6, userName);
+        }
+ 
+        String gender = entity.getGender();
+        if (gender != null) {
+            stmt.bindString(7, gender);
+        }
+ 
         String json = entity.getJson();
         if (json != null) {
-            stmt.bindString(2, json);
+            stmt.bindString(8, json);
         }
     }
 
@@ -90,7 +162,13 @@ public class UserProjectDao extends AbstractDao<UserProject, Long> {
     public UserProject readEntity(Cursor cursor, int offset) {
         UserProject entity = new UserProject( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // studentNumber
-            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1) // json
+            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // department
+            cursor.isNull(offset + 2) ? null : cursor.getShort(offset + 2) != 0, // student
+            cursor.isNull(offset + 3) ? null : cursor.getShort(offset + 3) != 0, // teacher
+            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // name
+            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // userName
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // gender
+            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7) // json
         );
         return entity;
     }
@@ -98,7 +176,13 @@ public class UserProjectDao extends AbstractDao<UserProject, Long> {
     @Override
     public void readEntity(Cursor cursor, UserProject entity, int offset) {
         entity.setStudentNumber(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
-        entity.setJson(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
+        entity.setDepartment(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
+        entity.setStudent(cursor.isNull(offset + 2) ? null : cursor.getShort(offset + 2) != 0);
+        entity.setTeacher(cursor.isNull(offset + 3) ? null : cursor.getShort(offset + 3) != 0);
+        entity.setName(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
+        entity.setUserName(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
+        entity.setGender(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
+        entity.setJson(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
      }
     
     @Override

@@ -46,6 +46,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         mApplication = (BaseApplication) getApplication();
         setContentView(getLayoutId());
         mBind = ButterKnife.bind(this);
+        steStatusBar(true);
         mClipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
         initmvp();
         initView();

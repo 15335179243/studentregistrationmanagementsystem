@@ -17,15 +17,19 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class ApplyListRlvAdapter extends RecyclerView.Adapter {
-
-
-    private final Long mStudentNumber;
+    private String mStudentNumber;
     private List<BeanProjectSelect.ProjectSelect> mList;
     private OnClickListener mOnClickListener;
     private OnLongClickListener mOnLongClickListener;
+    private int type = -1;
+
+    public ApplyListRlvAdapter(int type, String studentNumber) {
+        this.type = type;
+        mStudentNumber = studentNumber;
+    }
 
 
-    public ApplyListRlvAdapter(Long studentNumber) {
+    public ApplyListRlvAdapter(String studentNumber) {
 
         mStudentNumber = studentNumber;
     }
@@ -58,13 +62,13 @@ public class ApplyListRlvAdapter extends RecyclerView.Adapter {
         } else {
             ViewHolderOne holder1 = (ViewHolderOne) viewHolder;
             holder1.mNoeSpinnerContent.setText(mList.get(i).getUserPrjectstr());
-            holder1.mTvStudentNumberContent.setText(mStudentNumber.toString());
+            holder1.mTvStudentNumberContent.setText(mStudentNumber);
             holder1.mTowSpinnerContent.setText(mList.get(i).getUserConetentstr());
             holder1.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    if (mOnLongClickListener!=null){
-                        mOnLongClickListener.onLongClick(v,i);
+                    if (mOnLongClickListener != null) {
+                        mOnLongClickListener.onLongClick(v, i);
                     }
                     return false;
                 }
@@ -76,7 +80,7 @@ public class ApplyListRlvAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-
+        if (type == 1) return mList.size();
         if (mList.size() == 3) {
             return mList.size();
         } else {
@@ -86,7 +90,7 @@ public class ApplyListRlvAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemViewType(int position) {
-
+        if (type == 1) return 1;
         if (position == mList.size()) {
             return 2;
         } else {
@@ -132,7 +136,6 @@ public class ApplyListRlvAdapter extends RecyclerView.Adapter {
             ButterKnife.bind(this, view);
         }
     }
-
 
 
     static

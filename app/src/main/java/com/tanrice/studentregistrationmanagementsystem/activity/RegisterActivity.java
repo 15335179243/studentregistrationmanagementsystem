@@ -25,7 +25,7 @@ import butterknife.OnClick;
 public class RegisterActivity extends BaseActivity {
 
 
-    @BindView(R.id.spinner_school)
+    @BindView(R.id.set_content)
     Spinner mSpinnerSchool;
     @BindView(R.id.login)
     TextView mLogin;
@@ -33,7 +33,7 @@ public class RegisterActivity extends BaseActivity {
     ImageView mImgBack;
     @BindView(R.id.tv_title)
     TextView mTvTitle;
-    @BindView(R.id.school)
+    @BindView(R.id.set)
     TextView mSchool;
     @BindView(R.id.spinner_department)
     Spinner mSpinnerDepartment;
@@ -171,7 +171,7 @@ public class RegisterActivity extends BaseActivity {
                     showToast("请输入验证码");
                     return;
                 } else {
-                    if (!mBeanSelected.getVerificationCode().equals("00581ys")) {
+                    if (!BeanList.getVerificationCode().contains(mBeanSelected.getVerificationCode()))  {
                         showToast("非本校学生不能注册");
                         return;
                     }

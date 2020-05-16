@@ -6,13 +6,20 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.chumu.dt.v24.permissions.ChuMuSharedPreferences;
 import com.google.gson.Gson;
 import com.tanrice.studentregistrationmanagementsystem.BaseDialog.CommonTipDialog;
 import com.tanrice.studentregistrationmanagementsystem.R;
 import com.tanrice.studentregistrationmanagementsystem.basedata.BeanProjectSelect;
+import com.tanrice.studentregistrationmanagementsystem.basedata.User;
 import com.tanrice.studentregistrationmanagementsystem.basedata.UserProject;
 import com.tanrice.studentregistrationmanagementsystem.basedata.UserProjectDB;
+import com.tanrice.studentregistrationmanagementsystem.utils.DateUtils;
 
+import java.text.ParseException;
+import java.util.Date;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,9 +38,19 @@ public class ApplyLIstActivity extends BaseActivity {
     RecyclerView mRlv;
     @BindView(R.id.track)
     TextView mTrack;
-    private Long mStudentNumber;
+    @BindView(R.id.include2)
+    ConstraintLayout mInclude2;
+    @BindView(R.id.imageView2)
+    ImageView mImageView2;
+    @BindView(R.id.textView2)
+    TextView mTextView2;
+    @BindView(R.id.time_set)
+    ConstraintLayout mTimeSet;
+
 
     private ApplyListRlvAdapter mRlvAdapter;
+    private User bean;
+
 
     @Override
     public int getLayoutId() {
@@ -42,22 +59,36 @@ public class ApplyLIstActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        String value = (String) new ChuMuSharedPreferences(this, "time").getValue("times", "");
+        if (!value .isEmpty()) {
+            try {
+                Long data = DateUtils.getStringToData(value);
+
+                long currentTimeMillis = DateUtils.getCurrentTimeMillis();
+                int i = DateUtils.compareDate(new Date(data), new Date(currentTimeMillis));
+                if (i == -1) {
+                    mTimeSet.setVisibility(View.VISIBLE);
+                    mRlv.setVisibility(View.GONE);
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+        }
         mImgBack.setVisibility(View.GONE);
         steStatusBar(true);
         mTvTitle.setText("已报名项目");
-        mStudentNumber = getIntent().getLongExtra("studentNumber", 0);
-
+        bean = mApplication.userBean;
 
     }
 
     @Override
     public void initData() {
-        UserProject userProject = UserProjectDB.queryItem(new UserProject(mStudentNumber, ""));
+        UserProject userProject = UserProjectDB.queryItem(new UserProject(Long.valueOf(bean.getStudentNumber()), bean.getDepartment(), bean.getStudent(), bean.getTeacher(), bean.getName(), bean.getUserName(), bean.getGender(), ""));
         BeanProjectSelect beanProjectSelect = new Gson().fromJson(userProject.getJson(), BeanProjectSelect.class);
-        beanProjectSelect.getList();
         mRlv.setLayoutManager(new LinearLayoutManager(this));
         mRlv.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-        mRlvAdapter = new ApplyListRlvAdapter(mStudentNumber);
+        mRlvAdapter = new ApplyListRlvAdapter(bean.getStudentNumber());
         mRlv.setAdapter(mRlvAdapter);
         mRlvAdapter.setnewList(beanProjectSelect.getList());
         mRlvAdapter.setOnClickListener(new ApplyListRlvAdapter.OnClickListener() {
@@ -104,8 +135,9 @@ public class ApplyLIstActivity extends BaseActivity {
             default:
                 break;
             case R.id.track:
-                startActivity(new Intent(ApplyLIstActivity.this,NoticeActivity.class));
+                startActivity(new Intent(ApplyLIstActivity.this, NoticeActivity.class));
                 break;
         }
     }
+
 }
