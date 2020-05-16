@@ -3,6 +3,7 @@ package com.tanrice.studentregistrationmanagementsystem;
 import android.content.Context;
 
 import android.os.Environment;
+import android.util.Log;
 import android.widget.Toast;
 import java.io.File;
 import java.io.FileInputStream;
@@ -46,7 +47,7 @@ public class ExcelUtils {
     /**
      * 导出excel
      */
-    public void exportExcel(List<String> title,List<List<String>> listContent ,Context context) {
+    public void exportExcel(List<String> title, ArrayList<ArrayList<String>> listContent , Context context) {
         File file = new File(getSDPath() + "/Record");
         makeDir(file);
         ExcelUtils.initExcel(file.toString() + "/成绩表.xls", title);
@@ -133,7 +134,7 @@ public class ExcelUtils {
             InputStream in = null;
             try {
                 WorkbookSettings setEncode = new WorkbookSettings();
-                setEncode.setEncoding(UTF8_ENCODING);
+                setEncode.setEncoding(GBK_ENCODING);
                 in = new FileInputStream(new File(fileName));
                 Workbook workbook = Workbook.getWorkbook(in);
                 writebook = Workbook.createWorkbook(new File(fileName), workbook);
@@ -156,6 +157,7 @@ public class ExcelUtils {
                 }
 
                 writebook.write();
+                Log.e("chumu", "导出文件夹: "+fileName );
                 Toast.makeText(c, "导出到手机存储中文件夹Record成功", Toast.LENGTH_SHORT).show();
             } catch (Exception e) {
                 e.printStackTrace();

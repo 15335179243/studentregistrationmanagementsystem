@@ -1,19 +1,23 @@
 package com.tanrice.studentregistrationmanagementsystem.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.chumu.dt.v24.permissions.DynamicPermissions;
+import com.google.gson.Gson;
 import com.tanrice.studentregistrationmanagementsystem.BaseDialog.CommonTipDialog;
+import com.tanrice.studentregistrationmanagementsystem.ExcelUtils;
 import com.tanrice.studentregistrationmanagementsystem.R;
+import com.tanrice.studentregistrationmanagementsystem.basedata.BeanList;
+import com.tanrice.studentregistrationmanagementsystem.basedata.BeanProjectSelect;
 import com.tanrice.studentregistrationmanagementsystem.basedata.UserProject;
 import com.tanrice.studentregistrationmanagementsystem.basedata.UserProjectDB;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -21,8 +25,12 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static android.Manifest.permission.ACCESS_WIFI_STATE;
+import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
+import static android.Manifest.permission.READ_PHONE_STATE;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 public class AdministratorActivity extends BaseActivity {
 
@@ -44,6 +52,8 @@ public class AdministratorActivity extends BaseActivity {
     @BindView(R.id.time_set)
     ConstraintLayout mTimeSet;
     private RlvAdministratorAdapter mRlvAdministratorAdapter;
+    private List<UserProject> mUserProjects;
+    private DynamicPermissions mDynamicPermissions;
 
     @Override
     public int getLayoutId() {
@@ -56,16 +66,19 @@ public class AdministratorActivity extends BaseActivity {
         mRlvList.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         mRlvAdministratorAdapter = new RlvAdministratorAdapter();
         mRlvList.setAdapter(mRlvAdministratorAdapter);
+
+        mDynamicPermissions = new DynamicPermissions(AdministratorActivity.this,new String[]{READ_EXTERNAL_STORAGE,WRITE_EXTERNAL_STORAGE,READ_PHONE_STATE,ACCESS_WIFI_STATE});
+        mDynamicPermissions.init();
     }
 
     @Override
     public void initData() {
-        List<UserProject> userProjects = UserProjectDB.queryAll();
-        if (userProjects != null && userProjects.size() > 0) {
-            mRlvAdministratorAdapter.setNewlist(userProjects);
-            Log.e("chumu", "initData: "+  userProjects.toString() );
+        mUserProjects = UserProjectDB.queryAll();
+        if (mUserProjects != null && mUserProjects.size() > 0) {
+            mRlvAdministratorAdapter.setNewlist(mUserProjects);
+            Log.e("chumu", "initData: " + mUserProjects.toString());
 
-        }else {
+        } else {
             mExport.setVisibility(View.GONE);
             mRlvList.setVisibility(View.GONE);
             mTimeSet.setVisibility(View.VISIBLE);
@@ -101,11 +114,69 @@ public class AdministratorActivity extends BaseActivity {
                 startActivity(new Intent(AdministratorActivity.this, SetActivity.class));
                 break;
             case R.id.export:
+
+                if (mDynamicPermissions.isFlag()) {
+                    initStringData();
+                }
+
                 break;
             case R.id.img_back:
                 finish();
                 break;
         }
+    }
+
+    //        list.add("院校");
+//        list.add("院系");
+//        list.add("学号");
+//        list.add("账号");
+//        list.add("姓名");
+//        list.add("职务");
+//        list.add("报名项目一");
+//        list.add("报名项目二");
+//        list.add("报名项目三");
+    private void initStringData() {
+
+        ArrayList<ArrayList<String>> mGroupList = new ArrayList<>();
+        if (mUserProjects != null && mUserProjects.size() > 0) {
+            for (UserProject userProject : mUserProjects) {
+                ArrayList<String> list = new ArrayList<>();
+                list.add("阳光学院");
+                list.add(userProject.getDepartment());
+                list.add(userProject.getStudentNumber().toString());
+                list.add(userProject.getUserName());
+                list.add(userProject.getName());
+                if (userProject.getTeacher()) {
+                    list.add("教师");
+                }
+                if (userProject.getStudent()) {
+                    list.add("学生");
+                }
+                List<BeanProjectSelect.ProjectSelect> list1 = null;
+                if (!userProject.getJson().isEmpty()) {
+                    BeanProjectSelect beanProjectSelect = new Gson().fromJson(userProject.getJson(), BeanProjectSelect.class);
+                    list1 = beanProjectSelect.getList();
+                    if (list1 != null && list1.size() > 0) {
+                        for (BeanProjectSelect.ProjectSelect projectSelect : list1) {
+                            StringBuffer sb = new StringBuffer();
+                            sb.append(projectSelect.getUserPrjectstr());
+                            sb.append("----");
+                            sb.append(projectSelect.getUserConetentstr());
+                            list.add(sb.toString());
+                        }
+                    }
+                }
+
+                mGroupList.add(list);
+            }
+
+            ExcelUtils excelUtils = new ExcelUtils();
+            excelUtils.exportExcel(BeanList.getExceTitle(),mGroupList,AdministratorActivity.this);
+        } else {
+            showToast("没有报名信息");
+        }
+
+
     }
 
     private void showDialog(String left, String right, String centr, int i) {

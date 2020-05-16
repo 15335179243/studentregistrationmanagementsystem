@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.tanrice.studentregistrationmanagementsystem.R;
+import com.tanrice.studentregistrationmanagementsystem.activity.ui.login.AdminLoginActivity;
 import com.tanrice.studentregistrationmanagementsystem.basedata.BeanList;
 import com.tanrice.studentregistrationmanagementsystem.basedata.SQLHelper;
 import com.tanrice.studentregistrationmanagementsystem.basedata.User;
@@ -24,6 +25,7 @@ import com.tanrice.studentregistrationmanagementsystem.basedata.UserProject;
 import com.tanrice.studentregistrationmanagementsystem.basedata.UserProjectDB;
 import com.tanrice.studentregistrationmanagementsystem.dao.BeanSelected;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -73,7 +75,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     @BindView(R.id.register)
     TextView mRegister;
     @BindView(R.id.img_guanliyuan)
-    ImageView mAdmin;
+    TextView mAdmin;
     private List<BeanList> mData;
     private BeanSelected mBeanSelected;
     final static int COUNTS = 5;// 点击次数
@@ -198,7 +200,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                     showToast("请输入学号");
                     return;
                 } else {
-                    String rate = "([1][6-9][0-9]{6})|([2][0][0-9]{6})";
+                    String rate = "([1][6-9][0-9]{6})|([2][0][0-9]{6})|([0-9]{10})";
                     if (!mBeanSelected.getStudentNumber().matches(rate)) {
                         showToast("请正确输入学号");
                         return;
@@ -253,7 +255,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 startActivity(intent);
                 break;
             case R.id.img_guanliyuan:
-
                 continuousClick(COUNTS, DURATION);
                 break;
         }
@@ -268,7 +269,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         if (mHits[0] >= (SystemClock.uptimeMillis() - DURATION)) {
             mHits = new long[COUNTS];//重新初始化数组
             showToast("进入管理员系统");
-            Intent intent = new Intent(LoginActivity.this, AdministratorActivity.class);
+            Intent intent = new Intent(LoginActivity.this, AdminLoginActivity.class);
             startActivity(intent);
             finish();
         }

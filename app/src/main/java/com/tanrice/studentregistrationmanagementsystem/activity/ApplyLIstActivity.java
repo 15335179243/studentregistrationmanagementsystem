@@ -86,7 +86,6 @@ public class ApplyLIstActivity extends BaseActivity {
     public void initData() {
         UserProject userProject = UserProjectDB.queryItem(new UserProject(Long.valueOf(bean.getStudentNumber()), bean.getDepartment(), bean.getStudent(), bean.getTeacher(), bean.getName(), bean.getUserName(), bean.getGender(), ""));
         BeanProjectSelect beanProjectSelect = new Gson().fromJson(userProject.getJson(), BeanProjectSelect.class);
-        beanProjectSelect.getList();
         mRlv.setLayoutManager(new LinearLayoutManager(this));
         mRlv.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         mRlvAdapter = new ApplyListRlvAdapter(bean.getStudentNumber());

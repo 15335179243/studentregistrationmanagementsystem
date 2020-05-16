@@ -5,15 +5,67 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.LoginActivity">
-
-    <include
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/include7"
-        layout="@layout/toolbar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_70"
+        android:background="@drawable/bg_toolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <ImageView
+            android:id="@+id/img_back"
+            android:layout_width="@dimen/dp_25"
+            android:layout_height="@dimen/dp_25"
+            android:layout_marginStart="@dimen/dp_10"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline3"
+            app:srcCompat="@mipmap/img_back" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="@dimen/dp_110"
+            android:layout_height="@dimen/dp_33"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:text="报名管理系统"
+            android:textColor="#ff3a3a3a"
+            android:textSize="@dimen/sp_17"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline3" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="@dimen/dp_20" />
+
+        <TextView
+            android:id="@+id/img_guanliyuan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:gravity="center"
+            android:text="管理员"
+            android:textColor="@android:color/holo_blue_light"
+            android:textSize="@dimen/sp_18"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline3" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/set"
@@ -224,14 +276,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
-    <ImageView
-        android:id="@+id/img_guanliyuan"
-        android:layout_width="96dp"
-        android:layout_height="74dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
-        app:srcCompat="@mipmap/timg" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

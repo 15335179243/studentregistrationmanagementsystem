@@ -7,6 +7,9 @@ import android.content.Context;
 import com.tanrice.studentregistrationmanagementsystem.basedata.User;
 import com.tanrice.studentregistrationmanagementsystem.dao.DaoMaster;
 import com.tanrice.studentregistrationmanagementsystem.dao.DaoSession;
+import com.tanrice.studentregistrationmanagementsystem.logcollector.LogCollector;
+import com.tanrice.studentregistrationmanagementsystem.logcollector.capture.CrashHandler;
+import com.tanrice.studentregistrationmanagementsystem.logcollector.upload.HttpParameters;
 import com.tanrice.studentregistrationmanagementsystem.pic.DisplayU;
 
 import androidx.multidex.MultiDex;
@@ -23,6 +26,9 @@ public class BaseApplication extends APPAplication {
         super.attachBaseContext(base);
         MultiDex.install(this);
         DisplayU.init(base);
+
+        CrashHandler instance = CrashHandler.getInstance(this);
+        instance.init();
     }
 
     @Override

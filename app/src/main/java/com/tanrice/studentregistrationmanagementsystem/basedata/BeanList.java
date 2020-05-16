@@ -1,5 +1,7 @@
 package com.tanrice.studentregistrationmanagementsystem.basedata;
 
+import android.widget.EditText;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +19,7 @@ public class BeanList {
         this.studentProject = studentProject;
         this.teacherProject = teacherProject;
     }
+
 
     public String getSchool() {
         return school;
@@ -145,7 +148,8 @@ public class BeanList {
         strings.add("田赛");
         return strings;
     }
-///修改公告图片
+
+    ///修改公告图片
 //    http://chuantu.biz/
 //    上面是上传图片地址,想要的图片上传了,把地址添加进去集合
     public static List<String> getDataNotice() {
@@ -157,12 +161,35 @@ public class BeanList {
         return strings;
     }
 
-    public static List<String> getVerificationCode () {
+    public static List<String> getVerificationCode() {
         ArrayList<String> strings = new ArrayList<>();
         strings.add("00581ys");
         strings.add("00111");
 
         return strings;
+    }
+
+    public static String getAdminUserName() {
+        return "admin";
+    }
+
+    public static String getAdminPassword() {
+        return "admin";
+    }
+
+    public static List<String> getExceTitle() {
+        List<String> list = new ArrayList<>();
+        list.add("院校");
+        list.add("院系");
+        list.add("学号");
+        list.add("账号");
+        list.add("姓名");
+        list.add("职务");
+        list.add("报名项目一");
+        list.add("报名项目二");
+        list.add("报名项目三");
+
+        return list;
     }
 
 }
