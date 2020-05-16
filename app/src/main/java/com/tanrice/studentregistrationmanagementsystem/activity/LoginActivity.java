@@ -14,7 +14,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.tanrice.studentregistrationmanagementsystem.R;
 import com.tanrice.studentregistrationmanagementsystem.activity.ui.login.AdminLoginActivity;
@@ -25,10 +24,11 @@ import com.tanrice.studentregistrationmanagementsystem.basedata.UserProject;
 import com.tanrice.studentregistrationmanagementsystem.basedata.UserProjectDB;
 import com.tanrice.studentregistrationmanagementsystem.dao.BeanSelected;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener {
@@ -38,30 +38,39 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     ImageView mImgBack;
     @BindView(R.id.tv_title)
     TextView mTvTitle;
-    @BindView(R.id.set)
+
+    @BindView(R.id.img_guanliyuan)
+    TextView mImgGuanliyuan;
+    @BindView(R.id.include7)
+    ConstraintLayout mInclude7;
+    @BindView(R.id.school)
     TextView mSchool;
-    @BindView(R.id.spinner_department)
-    Spinner mSpinnerDepartment;
+    @BindView(R.id.spinner_school)
+    Spinner mSpinnerSchool;
     @BindView(R.id.department)
     TextView mDepartment;
-    @BindView(R.id.verification_code)
-    EditText mVerificationCode;
+    @BindView(R.id.spinner_department)
+    Spinner mSpinnerDepartment;
     @BindView(R.id.account_number)
     TextView mAccountNumber;
-    @BindView(R.id.name)
-    TextView mName;
-    @BindView(R.id.student_number)
-    TextView mStudentNumber;
     @BindView(R.id.account_number_content)
     EditText mAccountNumberContent;
+    @BindView(R.id.name)
+    TextView mName;
     @BindView(R.id.name_content)
     EditText mNameContent;
-    @BindView(R.id.pwd)
-    TextView mPwd;
+    @BindView(R.id.student_number)
+    TextView mStudentNumber;
     @BindView(R.id.student_number_content)
     EditText mStudentNumberContent;
+    @BindView(R.id.pwd)
+    TextView mPwd;
     @BindView(R.id.pwd_content)
     EditText mPwdContent;
+    @BindView(R.id.number5)
+    TextView mNumber5;
+    @BindView(R.id.verification_code)
+    EditText mVerificationCode;
     @BindView(R.id.rd_student)
     RadioButton mRdStudent;
     @BindView(R.id.rd_teacher)
@@ -70,12 +79,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     RadioGroup mRadioGroup;
     @BindView(R.id.login)
     Button mLogin;
-    @BindView(R.id.set_content)
-    Spinner mSpinnerSchool;
     @BindView(R.id.register)
     TextView mRegister;
-    @BindView(R.id.img_guanliyuan)
-    TextView mAdmin;
     private List<BeanList> mData;
     private BeanSelected mBeanSelected;
     final static int COUNTS = 5;// 点击次数
@@ -85,9 +90,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     /**
      * 学校:
      */
-    private TextView mSet;
-    private Spinner mSetContent;
-    private ImageView mImgGuanliyuan;
 
     @Override
     public int getLayoutId() {
@@ -238,10 +240,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 showToast("登陆成功");
                 mApplication.userBean = user;
                 UserProject userProject = UserProjectDB.queryItem(new UserProject(Long.valueOf(mApplication.userBean.getStudentNumber())));
-                Intent intent1=null;
-                if (userProject!=null&&userProject.getJson()!=null) {
+                Intent intent1 = null;
+                if (userProject != null && userProject.getJson() != null) {
                     intent1 = new Intent(LoginActivity.this, ApplyLIstActivity.class);
-                }else {
+                } else {
                     intent1 = new Intent(LoginActivity.this, ApplyActivity.class);
 
                 }
@@ -275,6 +277,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         }
 
     }
+
+ 
 }
 
 

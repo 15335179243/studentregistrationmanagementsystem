@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/time_set"
-    android:visibility="gone"
-    android:background="@android:color/white"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:visibility="gone">
 
     <ImageView
         android:id="@+id/imageView2"
@@ -26,9 +25,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_35"
         android:text="糟糕报名结束了,下次记得要早点来哦!"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:textSize="@dimen/sp_14"
         android:textColor="@color/color_999999"
+        android:textSize="@dimen/sp_14"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.tanrice.studentregistrationmanagementsystem.activity;
 
+import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -20,43 +21,44 @@ import com.tanrice.studentregistrationmanagementsystem.dao.BeanSelected;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class RegisterActivity extends BaseActivity {
 
 
-    @BindView(R.id.set_content)
-    Spinner mSpinnerSchool;
-    @BindView(R.id.login)
-    TextView mLogin;
     @BindView(R.id.img_back)
     ImageView mImgBack;
     @BindView(R.id.tv_title)
     TextView mTvTitle;
-    @BindView(R.id.set)
+    @BindView(R.id.school)
     TextView mSchool;
-    @BindView(R.id.spinner_department)
-    Spinner mSpinnerDepartment;
+    @BindView(R.id.spinner_school)
+    Spinner mSpinnerSchool;
     @BindView(R.id.department)
     TextView mDepartment;
-    @BindView(R.id.verification_code)
-    EditText mVerificationCode;
+    @BindView(R.id.spinner_department)
+    Spinner mSpinnerDepartment;
     @BindView(R.id.account_number)
     TextView mAccountNumber;
-    @BindView(R.id.name)
-    TextView mName;
-    @BindView(R.id.student_number)
-    TextView mStudentNumber;
     @BindView(R.id.account_number_content)
     EditText mAccountNumberContent;
+    @BindView(R.id.name)
+    TextView mName;
     @BindView(R.id.name_content)
     EditText mNameContent;
-    @BindView(R.id.pwd)
-    TextView mPwd;
+    @BindView(R.id.student_number)
+    TextView mStudentNumber;
     @BindView(R.id.student_number_content)
     EditText mStudentNumberContent;
+    @BindView(R.id.pwd)
+    TextView mPwd;
     @BindView(R.id.pwd_content)
     EditText mPwdContent;
+    @BindView(R.id.number5)
+    TextView mNumber5;
+    @BindView(R.id.verification_code)
+    EditText mVerificationCode;
     @BindView(R.id.rd_student)
     RadioButton mRdStudent;
     @BindView(R.id.rd_teacher)
@@ -65,6 +67,8 @@ public class RegisterActivity extends BaseActivity {
     RadioGroup mRadioGroup;
     @BindView(R.id.register)
     Button mRegister;
+    @BindView(R.id.login)
+    TextView mLogin;
     private BeanSelected mBeanSelected;
     private List<BeanList> mData;
 
@@ -171,7 +175,7 @@ public class RegisterActivity extends BaseActivity {
                     showToast("请输入验证码");
                     return;
                 } else {
-                    if (!BeanList.getVerificationCode().contains(mBeanSelected.getVerificationCode()))  {
+                    if (!BeanList.getVerificationCode().contains(mBeanSelected.getVerificationCode())) {
                         showToast("非本校学生不能注册");
                         return;
                     }
@@ -235,5 +239,6 @@ public class RegisterActivity extends BaseActivity {
         } else return false;
 
     }
+
 
 }
