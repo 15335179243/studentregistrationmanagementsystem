@@ -92,7 +92,7 @@ public class RegisterActivity extends BaseActivity {
         departmentAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         mSpinnerDepartment.setAdapter(departmentAdapter);
 
-        ArrayAdapter<String> mSpinnerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, new String[]{"请选择--", mData.get(0).getSchool()});
+        ArrayAdapter<String> mSpinnerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, mData.get(0).getSchool());
         departmentAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         mSpinnerSchool.setAdapter(mSpinnerAdapter);
         mSpinnerSchool.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -185,7 +185,8 @@ public class RegisterActivity extends BaseActivity {
                     showToast("请输入学号");
                     return;
                 } else {
-                    String rate = "([1][6-9][0-9]{6})|([2][0][0-9]{6})";
+                    ///学号正则
+                    String rate = "([1][6-9][0-9]{6})|([2][0][0-9]{6})|([0-9]{10})";
                     if (!mBeanSelected.getStudentNumber().matches(rate)) {
                         showToast("请正确输入学号");
                         return;

@@ -8,12 +8,12 @@ import java.util.List;
 public class BeanList {
 
 
-    private String school = "阳光学院";
+    private List<String> school;
     private List<String> department;
     private TProject studentProject;
     private TProject teacherProject;
 
-    public BeanList(String school, List<String> department, TProject studentProject, TProject teacherProject) {
+    public BeanList(List<String> school, List<String> department, TProject studentProject, TProject teacherProject) {
         this.school = school;
         this.department = department;
         this.studentProject = studentProject;
@@ -21,11 +21,11 @@ public class BeanList {
     }
 
 
-    public String getSchool() {
+    public List<String> getSchool() {
         return school;
     }
 
-    public void setSchool(String school) {
+    public void setSchool(List<String> school) {
         this.school = school;
     }
 
@@ -81,6 +81,9 @@ public class BeanList {
 
     public static List<BeanList> getData() {
         ArrayList<BeanList> lists = new ArrayList<>();
+        ArrayList<String> school = new ArrayList<>();
+        school.add("请选择--");
+        school.add("阳光学院");
         ArrayList<String> department = new ArrayList<>();
         department.add("请选择--");
         department.add("土木学院");
@@ -135,7 +138,7 @@ public class BeanList {
         teacherFieldEvents.add("教工女子跳高");
         teacherFieldEvents.add("教工女子三分钟8字绳");
         TProject teacherProject = new TProject(teacherTrack, teacherFieldEvents);
-        BeanList beanList = new BeanList("阳光学院", department, studentProject, teacherProject);
+        BeanList beanList = new BeanList(school, department, studentProject, teacherProject);
         lists.add(beanList);
 
         return lists;

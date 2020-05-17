@@ -112,7 +112,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         departmentAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         mSpinnerDepartment.setAdapter(departmentAdapter);
 
-        ArrayAdapter<String> mSpinnerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, new String[]{"请选择--", mData.get(0).getSchool()});
+        ArrayAdapter<String> mSpinnerAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item,mData.get(0).getSchool());
         departmentAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         mSpinnerSchool.setAdapter(mSpinnerAdapter);
         mSpinnerSchool.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
