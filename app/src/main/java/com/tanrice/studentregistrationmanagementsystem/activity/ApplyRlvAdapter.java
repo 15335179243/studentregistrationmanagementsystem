@@ -118,7 +118,7 @@ public class ApplyRlvAdapter extends RecyclerView.Adapter {
                         if (getIsStudent() == 1) {
                             list = mData.get(post).get(0).getStudentProject().getFieldEvents();
                         } else {
-                            list = mData.get(post).get(0).getTeacherProject().getTrack();
+                            list = mData.get(post).get(0).getTeacherProject().getFieldEvents();
                         }
                     }
                     if (adapterView.getItemAtPosition(i).toString().equals("径赛")) {

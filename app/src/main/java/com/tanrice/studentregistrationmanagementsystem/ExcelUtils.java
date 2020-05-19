@@ -50,8 +50,8 @@ public class ExcelUtils {
     public void exportExcel(List<String> title, ArrayList<ArrayList<String>> listContent , Context context) {
         File file = new File(getSDPath() + "/Record");
         makeDir(file);
-        ExcelUtils.initExcel(file.toString() + "/成绩表.xls", title);
-        String fileName = getSDPath() + "/Record/成绩表.xls";
+        ExcelUtils.initExcel(file.toString() + "/报名表.xls", title);
+        String fileName = getSDPath() + "/Record/报名表.xls";
         ExcelUtils.writeObjListToExcel(listContent, fileName, context);
     }
 
